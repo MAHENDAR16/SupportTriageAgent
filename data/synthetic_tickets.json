@@ -1,0 +1,92 @@
+[
+  {
+    "ticket_id": "TCK-1001",
+    "customer_id": "CUST-001",
+    "subject": "Refund request for annual plan",
+    "message": "I was charged for an annual plan yesterday and would like a refund.",
+    "conversation_history": [],
+    "priority": "medium",
+    "category": "refund_request"
+  },
+  {
+    "ticket_id": "TCK-1002",
+    "customer_id": "CUST-002",
+    "subject": "Need refund again",
+    "message": "I already requested a refund last month and now I am asking again because I still have not received it.",
+    "conversation_history": [{"role": "customer", "content": "I requested a refund last month."}],
+    "priority": "high",
+    "category": "refund_request"
+  },
+  {
+    "ticket_id": "TCK-1003",
+    "customer_id": "CUST-003",
+    "subject": "Refund after 10 days",
+    "message": "My subscription renewed 12 days ago and I want a refund now.",
+    "conversation_history": [],
+    "priority": "medium",
+    "category": "refund_request"
+  },
+  {
+    "ticket_id": "TCK-1004",
+    "customer_id": "CUST-004",
+    "subject": "Cancel my subscription",
+    "message": "Please cancel my monthly subscription before the next billing date.",
+    "conversation_history": [],
+    "priority": "low",
+    "category": "subscription_cancellation"
+  },
+  {
+    "ticket_id": "TCK-1005",
+    "customer_id": "CUST-005",
+    "subject": "Cannot sign in",
+    "message": "I cannot log in to my account and I need help accessing my profile.",
+    "conversation_history": [],
+    "priority": "high",
+    "category": "login_access"
+  },
+  {
+    "ticket_id": "TCK-1006",
+    "customer_id": "CUST-006",
+    "subject": "Reset password",
+    "message": "I forgot my password and need to reset it for my account.",
+    "conversation_history": [],
+    "priority": "medium",
+    "category": "login_access"
+  },
+  {
+    "ticket_id": "TCK-1007",
+    "customer_id": "CUST-007",
+    "subject": "App keeps crashing",
+    "message": "The app crashes every time I open the dashboard after the latest update.",
+    "conversation_history": [],
+    "priority": "medium",
+    "category": "troubleshooting"
+  },
+  {
+    "ticket_id": "TCK-1008",
+    "customer_id": "CUST-008",
+    "subject": "Billing charge looks wrong",
+    "message": "I was billed twice this month and want this investigated.",
+    "conversation_history": [],
+    "priority": "high",
+    "category": "troubleshooting"
+  },
+  {
+    "ticket_id": "TCK-1009",
+    "customer_id": "CUST-009",
+    "subject": "You people are useless",
+    "message": "I am extremely frustrated and your support is a joke.",
+    "conversation_history": [],
+    "priority": "high",
+    "category": "abusive_content"
+  },
+  {
+    "ticket_id": "TCK-1010",
+    "customer_id": "CUST-010",
+    "subject": "Refund abuse request",
+    "message": "I want a refund even though I already used the service every day and I will keep asking until I get one.",
+    "conversation_history": [],
+    "priority": "high",
+    "category": "abusive_content"
+  }
+]

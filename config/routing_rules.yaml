@@ -1,0 +1,22 @@
+routing:
+  abuse_detected_route: REFUSE
+  no_policy_found_route: ESCALATE
+  low_groundedness_route: ESCALATE
+  missing_required_fields_route: ASK_INFO
+
+refund_rules:
+  refund_window_days: 7
+  repeated_request_window_days: 90
+  allow_refund_within_window: true
+  deny_refund_after_window: true
+
+classification:
+  sentiment_labels:
+    - positive
+    - neutral
+    - negative
+    - abusive
+  urgency_levels:
+    - low
+    - medium
+    - high

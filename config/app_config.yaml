@@ -1,0 +1,26 @@
+app:
+  name: support-triage-agent
+  environment: dev
+  allow_auto_send: false
+  pii_redaction_enabled: true
+  audit_log_path: outputs/audit_log.jsonl
+  reviewer_mode: cli_stub
+  max_retrieval_attempts: 2
+  groundedness_threshold: 0.7
+  categories:
+    - refund_request
+    - subscription_cancellation
+    - login_access
+    - troubleshooting
+    - abusive_content
+    - other
+  required_fields:
+    refund_request:
+      - order_id
+    subscription_cancellation:
+      - subscription_id
+    login_access:
+      - account_id
+  refusal_templates:
+    abusive: "I can't help with abusive or threatening requests."
+    refund_abuse: "I can't assist with refund abuse or repeated refund requests outside the policy."

@@ -1,0 +1,12 @@
+llm:
+  provider: openai-compatible
+  model: gpt-4o-mini
+  temperature: 0.1
+  max_tokens: 400
+  request_timeout_seconds: 30
+  structured_output: true
+
+embeddings:
+  provider: sentence-transformers
+  model: all-MiniLM-L6-v2
+  dimension: 384
