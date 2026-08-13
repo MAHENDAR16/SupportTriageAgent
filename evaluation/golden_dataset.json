@@ -2,61 +2,111 @@
   {
     "ticket_id": "TCK-1001",
     "expected_route": "AUTO_RESOLVE",
-    "expected_reason": "refund request within policy window"
+    "expected_reason": "refund request within the 7-day policy window, order ID provided"
   },
   {
     "ticket_id": "TCK-1002",
     "expected_route": "ESCALATE",
-    "expected_reason": "repeated refund request within repeated-request window"
+    "expected_reason": "repeated refund request within the 90-day repeat-request window"
   },
   {
     "ticket_id": "TCK-1003",
     "expected_route": "ESCALATE",
-    "expected_reason": "refund outside the 7-day window"
+    "expected_reason": "refund requested 12 days after purchase, outside the 7-day window"
   },
   {
     "ticket_id": "TCK-1004",
     "expected_route": "AUTO_RESOLVE",
-    "expected_reason": "subscription cancellation can be handled with policy guidance"
+    "expected_reason": "subscription cancellation is directly covered by policy, subscription ID provided"
   },
   {
     "ticket_id": "TCK-1005",
     "expected_route": "ASK_INFO",
-    "expected_reason": "account access ticket missing required identifier"
+    "expected_reason": "login_access ticket missing required account identifier"
+  },
+  {
+    "ticket_id": "TCK-1006",
+    "expected_route": "ASK_INFO",
+    "expected_reason": "login_access ticket missing required account identifier"
   },
   {
     "ticket_id": "TCK-1007",
-    "expected_route": "AUTO_RESOLVE",
-    "expected_reason": "policy-grounded troubleshooting response"
+    "expected_route": "ASK_INFO",
+    "expected_reason": "troubleshooting ticket missing device/browser and exact error details per troubleshooting_faq.md guidance"
+  },
+  {
+    "ticket_id": "TCK-1008",
+    "expected_route": "ESCALATE",
+    "expected_reason": "disputed duplicate billing charge requires escalation per policy"
   },
   {
     "ticket_id": "TCK-1009",
     "expected_route": "REFUSE",
-    "expected_reason": "abusive content should be refused"
+    "expected_reason": "abusive/threatening content triggers scripted refusal"
   },
   {
     "ticket_id": "TCK-1010",
     "expected_route": "REFUSE",
-    "expected_reason": "refund abuse should be refused"
+    "expected_reason": "explicit refund-abuse language triggers scripted refusal"
   },
   {
     "ticket_id": "TCK-1011",
-    "expected_route": "ASK_INFO",
-    "expected_reason": "missing order identifier for order-related request"
+    "expected_route": "AUTO_RESOLVE",
+    "expected_reason": "refund requested exactly at the 7-day boundary, still within window, order ID provided"
   },
   {
     "ticket_id": "TCK-1012",
+    "expected_route": "ASK_INFO",
+    "expected_reason": "refund_request ticket missing required order identifier"
+  },
+  {
+    "ticket_id": "TCK-1013",
+    "expected_route": "ASK_INFO",
+    "expected_reason": "vague troubleshooting ticket lacks enough detail to diagnose"
+  },
+  {
+    "ticket_id": "TCK-1014",
+    "expected_route": "ASK_INFO",
+    "expected_reason": "subscription_cancellation ticket missing required subscription identifier"
+  },
+  {
+    "ticket_id": "TCK-1015",
     "expected_route": "ESCALATE",
-    "expected_reason": "policy could not be verified from the knowledge base"
+    "expected_reason": "disputed renewal charge requires escalation per subscription policy"
+  },
+  {
+    "ticket_id": "TCK-1016",
+    "expected_route": "AUTO_RESOLVE",
+    "expected_reason": "plan change is directly covered by subscription policy, subscription ID provided"
   },
   {
     "ticket_id": "TCK-1017",
-    "expected_route": "ASK_INFO",
-    "expected_reason": "missing required order identifier"
+    "expected_route": "ESCALATE",
+    "expected_reason": "no matching policy found in knowledge base for GDPR/data export request"
+  },
+  {
+    "ticket_id": "TCK-1018",
+    "expected_route": "ESCALATE",
+    "expected_reason": "no matching policy found in knowledge base for enterprise SSO/account management request"
+  },
+  {
+    "ticket_id": "TCK-1019",
+    "expected_route": "AUTO_RESOLVE",
+    "expected_reason": "account lockout is directly covered by account access FAQ, account ID provided"
   },
   {
     "ticket_id": "TCK-1020",
     "expected_route": "ESCALATE",
-    "expected_reason": "no matching policy found"
+    "expected_reason": "suspected compromised account requires escalation per account access FAQ"
+  },
+  {
+    "ticket_id": "TCK-1021",
+    "expected_route": "REFUSE",
+    "expected_reason": "explicit threat triggers scripted refusal"
+  },
+  {
+    "ticket_id": "TCK-1022",
+    "expected_route": "AUTO_RESOLVE",
+    "expected_reason": "policy-grounded troubleshooting response, sufficient diagnostic detail provided"
   }
 ]

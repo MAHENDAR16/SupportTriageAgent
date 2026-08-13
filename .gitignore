@@ -1,0 +1,28 @@
+# Ignore all files in the scripts directory (local examples, keys)
+scripts/
+
+# Environment files
+.env
+.env.*
+
+# Virtual environments
+.venv/
+venv/
+.supportvenv/
+
+# Python caches and bytecode
+__pycache__/
+*.py[cod]
+
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/
+
+# pip wheel
+*.whl
+
+# Generated run artifacts (audit logs, eval reports, per-ticket results)
+outputs/*
+!outputs/.gitkeep

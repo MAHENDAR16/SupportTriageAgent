@@ -156,7 +156,7 @@ class GraphState(TypedDict):
 - **Retrieval**: local vector store (FAISS for MVP, swappable to Chroma/Azure AI Search later) over `data/knowledge_base/*.md`.
 - **Storage**: relational store (Postgres in prod, SQLite in dev) for tickets, reviewer decisions, audit logs.
 - **Auth** (for the HITL reviewer UI/API): basic auth or SSO stub for MVP; role-based access (reviewer vs admin) for later phases.
-- **Model provider**: Anthropic/OpenAI-compatible via LangChain's model abstraction — keep provider swappable through `config/model_config.yaml`.
+- **Model provider**: Anthropic/OpenAI-compatible via LangChain's model abstraction — keep provider swappable through `config/model_config.yaml`. For local/dev testing, **GROQ** (via `langchain-groq` / the `groq` SDK) is the default low-latency provider — see §4.6 for the concrete `.env` variables, client init snippets, and setup steps.
 
 ---
 
@@ -169,7 +169,8 @@ class GraphState(TypedDict):
 - `synthetic_tickets.json` (≥20 tickets spanning all 5 categories, including edge cases: abusive message, refund outside window, repeated refund request, vague ticket needing clarification)
 - KB markdown files: `refund_policy.md`, `account_access_faq.md`, `subscription_policy.md`, `abusive_content_policy.md`, `troubleshooting_faq.md`
 - `app_config.yaml`, `model_config.yaml`, `routing_rules.yaml`
-**Success criteria**: tickets and KB load without error; config validated via Pydantic settings.
+- `.env.example` (checked in) + local `.env` (gitignored) centralizing all provider secrets — including `GROQ_API_KEY`, `GROQ_DATASET`, `GROQ_PROJECT_ID`, `GROQ_API_URL` — loaded via `python-dotenv` (backend) / `dotenv` (Next.js reviewer UI). See §4.6 for the full template and client-init snippets.
+**Success criteria**: tickets and KB load without error; config validated via Pydantic settings; `.env.example` contains a placeholder for every environment variable the app reads (verified by a startup config check, not just convention).
 
 ### Phase 1 — MVP: Linear RAG + Single-Pass Routing (1.5–2 weeks)
 **Goals**: end-to-end path for one ticket — ingest → classify → retrieve → draft → route → HITL stub → log. No refinement loop yet.
@@ -326,7 +327,7 @@ Return JSON: {"score": float, "unsupported_claims": ["..."]}
 
 ### 4.4 Data Handling, Privacy, Security
 - Synthetic data only for dev/eval — no real customer PII in the repo.
-- `.env` for API keys; `.env.example` checked in with placeholders only.
+- `.env` for API keys (never committed); `.env.example` checked in with placeholders only — including `GROQ_API_KEY`, `GROQ_DATASET`, `GROQ_PROJECT_ID`, and `GROQ_API_URL` alongside any other provider/eval secrets (`ANTHROPIC_API_KEY`, `ARIZE_API_KEY`, `DATABASE_URL`). No hard-coded keys, dataset names, project IDs, or endpoints anywhere in source — every one of these is read from `process.env` / `os.environ` with a safe, non-secret default only where a default is actually safe (e.g. `GROQ_API_URL` can default to the public endpoint; `GROQ_API_KEY` must never have a default and should fail fast if unset). Full template and loading pattern in §4.6.
 - If integrating a real ticket system later: redact PII (names, emails, payment info) before sending ticket text to any third-party eval/monitoring tool (Arize, etc.).
 - Audit log is append-only (no deletes/edits) — supports compliance review of every AI decision.
 - Access control on the HITL reviewer endpoints (auth required to approve/reject).
@@ -339,6 +340,141 @@ Return JSON: {"score": float, "unsupported_claims": ["..."]}
 | CI | GitHub Actions: lint, unit tests, golden-dataset regression eval on PR |
 | Prod | FastAPI (containerized) + Postgres + managed vector store (Chroma server or Azure AI Search) + reviewer UI (Next.js) behind auth; LangSmith/Arize for tracing |
 | Monitoring | Dashboards: route distribution, escalation rate, avg confidence/groundedness, reviewer approval/edit/reject rates, latency p50/p95 |
+
+### 4.6 Environment Configuration & GROQ Test Setup
+
+All provider credentials and connection settings are centralized in a single `.env` file (gitignored) with a matching `.env.example` template checked into the repo. Nothing below is ever hard-coded in source — every value is read from the environment, with safe defaults reserved for non-secret settings only.
+
+**`.env.example`** (checked into the repo — copy to `.env` and fill in real values):
+```bash
+# ---- GROQ (primary dev/test LLM provider) ----
+GROQ_API_KEY=gsk_your_groq_api_key_here          # required — no default, fail fast if unset
+GROQ_DATASET=support-triage-golden-dataset        # required — golden-dataset name used by the eval harness
+GROQ_PROJECT_ID=proj_your_groq_project_id_here    # required — GROQ project/workspace ID
+GROQ_API_URL=https://api.groq.com/openai/v1       # optional — safe to default to GROQ's public endpoint
+GROQ_MODEL=llama-3.3-70b-versatile                # optional — safe default, override per environment
+
+# ---- Other providers already referenced in this plan (§4.4) ----
+ANTHROPIC_API_KEY=sk-ant-your-key-here
+OPENAI_API_KEY=sk-your-key-here
+DATABASE_URL=postgresql://user:password@localhost:5432/triage_agent
+ARIZE_API_KEY=your-arize-key-here
+ARIZE_SPACE_KEY=your-arize-space-key-here
+
+# ---- App ----
+APP_ENV=development                                # development | production
+```
+
+**`config/model_config.yaml`** — reference the env vars rather than embedding values, so the same config file works across dev/CI/prod:
+```yaml
+provider: groq
+groq:
+  api_key: ${GROQ_API_KEY}
+  api_url: ${GROQ_API_URL:-https://api.groq.com/openai/v1}
+  model: ${GROQ_MODEL:-llama-3.3-70b-versatile}
+  dataset: ${GROQ_DATASET}
+  project_id: ${GROQ_PROJECT_ID}
+```
+
+**Python — LangChain agent init (`src/agents/llm_client.py`)**, used by the classifier, draft-answer, and groundedness-check nodes:
+```python
+import os
+from dotenv import load_dotenv
+from langchain_groq import ChatGroq
+
+load_dotenv()  # no-op in prod if vars are injected by the platform instead of a .env file
+
+def _require_env(name: str) -> str:
+    value = os.environ.get(name)
+    if not value:
+        raise RuntimeError(
+            f"Missing required environment variable: {name}. "
+            f"Copy .env.example to .env and fill in your GROQ credentials."
+        )
+    return value
+
+GROQ_API_KEY = _require_env("GROQ_API_KEY")
+GROQ_PROJECT_ID = _require_env("GROQ_PROJECT_ID")
+GROQ_DATASET = _require_env("GROQ_DATASET")
+GROQ_API_URL = os.environ.get("GROQ_API_URL", "https://api.groq.com/openai/v1")
+GROQ_MODEL = os.environ.get("GROQ_MODEL", "llama-3.3-70b-versatile")
+
+llm = ChatGroq(
+    api_key=GROQ_API_KEY,
+    model=GROQ_MODEL,
+    base_url=GROQ_API_URL,
+    temperature=0,
+)
+```
+
+**Minimal test script (`tests/test_groq_connection.py`)** — smoke-test that credentials and connectivity work before running the full graph:
+```python
+import os
+from dotenv import load_dotenv
+from langchain_groq import ChatGroq
+
+def test_groq_connection():
+    load_dotenv()
+    api_key = os.environ.get("GROQ_API_KEY")
+    assert api_key, "GROQ_API_KEY not set — copy .env.example to .env and fill it in"
+
+    llm = ChatGroq(
+        api_key=api_key,
+        model=os.environ.get("GROQ_MODEL", "llama-3.3-70b-versatile"),
+        base_url=os.environ.get("GROQ_API_URL", "https://api.groq.com/openai/v1"),
+    )
+    response = llm.invoke("Reply with exactly: GROQ connection OK")
+    assert "OK" in response.content
+```
+
+**Node/TypeScript — reviewer UI (Next.js) smoke test (`scripts/test-groq.ts`)**, using `process.env` for the parts of the stack that run in Node rather than Python:
+```typescript
+import Groq from "groq-sdk";
+import * as dotenv from "dotenv";
+
+dotenv.config();
+
+const GROQ_API_KEY = process.env.GROQ_API_KEY;
+const GROQ_API_URL = process.env.GROQ_API_URL ?? "https://api.groq.com/openai/v1";
+const GROQ_MODEL = process.env.GROQ_MODEL ?? "llama-3.3-70b-versatile";
+
+if (!GROQ_API_KEY) {
+  throw new Error(
+    "Missing GROQ_API_KEY. Copy .env.example to .env and fill in your GROQ credentials."
+  );
+}
+
+const groq = new Groq({ apiKey: GROQ_API_KEY, baseURL: GROQ_API_URL });
+
+async function testGroqConnection(): Promise<void> {
+  const completion = await groq.chat.completions.create({
+    model: GROQ_MODEL,
+    messages: [{ role: "user", content: "Reply with exactly: GROQ connection OK" }],
+  });
+  console.log(completion.choices[0].message.content);
+}
+
+testGroqConnection().catch((err) => {
+  console.error("GROQ connection test failed:", err);
+  process.exit(1);
+});
+```
+
+**Setup steps**:
+1. **Install dependencies**
+   - Python (agent/backend): `pip install langchain-groq groq python-dotenv fastapi uvicorn`
+   - Node (reviewer UI, if testing that side): `npm install groq-sdk dotenv`
+2. **Create your local env file**: `cp .env.example .env`, then fill in `GROQ_API_KEY`, `GROQ_DATASET`, and `GROQ_PROJECT_ID` with real values (leave `GROQ_API_URL`/`GROQ_MODEL` at their defaults unless you're pointing at a different endpoint or model).
+3. **List/verify loaded environment variables** (without printing the secret value itself):
+   - Python: `python -c "import os; from dotenv import load_dotenv; load_dotenv(); print([k for k in os.environ if k.startswith('GROQ_')])"`
+   - Shell: `grep -o '^[A-Z_]*' .env.example` to list expected keys, then `env | grep GROQ_ | cut -d= -f1` to confirm they're set (without echoing values).
+4. **Run the connection smoke test**:
+   - Python: `pytest tests/test_groq_connection.py -v`
+   - Node: `npx ts-node scripts/test-groq.ts`
+5. **Run in development mode**: `APP_ENV=development uvicorn src.main:app --reload --env-file .env` — reloads on change, verbose logging, `.env` loaded directly.
+6. **Run in production mode**: secrets are injected by the deployment platform's secret manager (not a committed `.env` file); `APP_ENV=production uvicorn src.main:app --host 0.0.0.0 --port 8000 --workers 4`. CI/CD should fail the deploy if any required `GROQ_*` variable is missing from the target environment.
+
+**Library compatibility note**: snippets above target `langchain-groq` (Python, matches this plan's LangChain/LangGraph stack) and the official `groq-sdk` (Node, for the Next.js reviewer UI). Both are OpenAI-compatible at the API level, so swapping to the raw `groq` Python SDK or another OpenAI-compatible client only requires changing the client construction, not the env-variable names or loading pattern.
 
 ---
 

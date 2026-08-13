@@ -9,6 +9,34 @@ refund_rules:
   repeated_request_window_days: 90
   allow_refund_within_window: true
   deny_refund_after_window: true
+  abuse_language_keywords:      # distinguishes REFUSE (refund abuse) from ESCALATE (plain repeat request)
+    - "keep asking"
+    - "won't stop"
+    - "no matter what"
+    - "every day"
+    - "already used"
+
+escalation_keywords:            # turns KB "escalate on X" guidance into a checkable rule
+  subscription_cancellation:
+    - "dispute"
+    - "charged twice"
+    - "billed twice"
+    - "double charge"
+    - "unauthorized"
+    - "didn't cancel"
+    - "thought i had cancelled"
+  troubleshooting:
+    - "billed twice"
+    - "charged twice"
+    - "double charge"
+    - "dispute"
+  login_access:
+    - "suspicious"
+    - "don't recognize"
+    - "unauthorized"
+    - "someone else"
+    - "without permission"
+    - "compromised"
 
 classification:
   sentiment_labels:
