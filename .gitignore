@@ -26,3 +26,6 @@ __pycache__/
 # Generated run artifacts (audit logs, eval reports, per-ticket results)
 outputs/*
 !outputs/.gitkeep
+
+*.pdf
+*.md
