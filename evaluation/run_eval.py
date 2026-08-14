@@ -103,7 +103,8 @@ def run_eval() -> dict:
     )
 
     report = {"summary": summary, "tickets": per_ticket}
-    report_path = REPO_ROOT / "evaluation" / "eval_report.json"
+    report_path = settings.evaluation_reports_dir / "eval_report.json"
+    report_path.parent.mkdir(parents=True, exist_ok=True)
     report_path.write_text(json.dumps(report, indent=2), encoding="utf-8")
     return report
 

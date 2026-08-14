@@ -18,6 +18,7 @@ class GraphState(TypedDict, total=False):
     requires_more_info: bool
     missing_fields: list[str]
     abuse_detected: bool
+    conversation_context: str           # formatted conversation history for LLM context
     retrieved_chunks: list[RetrievedChunk]
     draft_reply: str
     fabricated_citations: list[str]

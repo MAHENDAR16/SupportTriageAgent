@@ -7,11 +7,8 @@ from langchain_core.prompts import ChatPromptTemplate
 from pydantic import BaseModel, Field, field_validator
 
 from src.graph.state import RetrievedChunk
+from src.models.ticket import Ticket
 
-# Phase 1: reuse the retriever's similarity score as a first-pass groundedness
-# signal (cheap, no extra LLM call). Phase 2 adds a stricter LLM-as-judge
-# check (below) on the actual drafted text, which can catch claims that drift
-# from the retrieved context even when retrieval itself scored well.
 CITATION_PATTERN = re.compile(r"\[source:\s*([\w\-. ]+?)\]", re.IGNORECASE)
 
 
@@ -48,6 +45,24 @@ class GroundednessJudgment(BaseModel):
         return value
 
 
+_DRAFT_PROMPT = ChatPromptTemplate.from_messages(
+    [
+        (
+            "system",
+            "You are a support draft-writer. You may ONLY state policy facts that "
+            "appear in the CONTEXT below, with a source citation. If the context "
+            "does not answer the customer's question, say plainly that the "
+            "relevant policy could not be verified and recommend escalation. "
+            "Never invent policy details. Write a draft reply (not sent to the "
+            "customer) citing sources like [source: refund_policy.md].",
+        ),
+        (
+            "human",
+            "Context:\n{context}\n\nCustomer subject: {subject}\nCustomer message: {message}",
+        ),
+    ]
+)
+
 _JUDGE_PROMPT = ChatPromptTemplate.from_messages(
     [
         (
@@ -70,6 +85,18 @@ def _format_context(chunks: list[RetrievedChunk]) -> str:
     if not chunks:
         return "(no relevant knowledge base content retrieved)"
     return "\n\n".join(f"[source: {c['source']}]\n{c['text']}" for c in chunks)
+
+
+def draft_answer(ticket: Ticket, retrieved_chunks: list[RetrievedChunk], llm) -> str:
+    chain = _DRAFT_PROMPT | llm
+    response = chain.invoke(
+        {
+            "context": _format_context(retrieved_chunks),
+            "subject": ticket.subject,
+            "message": ticket.message,
+        }
+    )
+    return response.content
 
 
 def judge_groundedness(draft_reply: str, retrieved_chunks: list[RetrievedChunk], llm) -> GroundednessJudgment:

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from src.agents.classifier import classify_ticket
+from src.agents.sentiment_agent import classify_ticket
 from src.graph.deps import GraphDeps
 from src.graph.state import GraphState
 from src.rules.abuse_detection import detect_abuse

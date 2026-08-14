@@ -118,6 +118,22 @@ class Settings:
         return REPO_ROOT / self.app_config_yaml["app"]["audit_log_path"]
 
     @property
+    def thread_store_path(self) -> Path:
+        return REPO_ROOT / self.app_config_yaml["app"].get("thread_store_path", "outputs/databases/threads.db")
+
+    @property
+    def results_dir(self) -> Path:
+        return REPO_ROOT / self.app_config_yaml["app"].get("results_dir", "outputs/results")
+
+    @property
+    def drafted_replies_dir(self) -> Path:
+        return REPO_ROOT / self.app_config_yaml["app"].get("drafted_replies_dir", "outputs/drafted_replies")
+
+    @property
+    def evaluation_reports_dir(self) -> Path:
+        return REPO_ROOT / self.app_config_yaml["app"].get("evaluation_reports_dir", "outputs/evaluation_reports")
+
+    @property
     def reviewer_mode(self) -> str:
         return self.app_config_yaml["app"]["reviewer_mode"]
 

@@ -1,11 +1,15 @@
 from __future__ import annotations
 
+import os
+
 from langgraph.graph import END, StateGraph
 
 from src.agents.llm_client import build_llm
-from src.audit.logger import AuditLogger
 from src.config.settings import Settings, get_settings
 from src.graph.deps import GraphDeps
+from src.logging.audit_logger import AuditLogger
+from src.memory.conversation_memory import ConversationMemory
+from src.memory.customer_thread_store import CustomerThreadStore
 from src.graph.nodes.audit_log import make_audit_log_node
 from src.graph.nodes.confidence_recheck import make_confidence_recheck_node
 from src.graph.nodes.draft_answer import make_draft_answer_node
@@ -25,11 +29,14 @@ def build_default_deps(
     settings: Settings | None = None,
 ) -> GraphDeps:
     settings = settings or get_settings()
+    arize_enabled = bool(os.getenv("ARIZE_API_KEY"))
     return GraphDeps(
         settings=settings,
         llm=build_llm(settings),
         retriever=build_retriever(settings),
-        audit_logger=AuditLogger(settings.audit_log_path),
+        audit_logger=AuditLogger(settings.audit_log_path, arize_enabled=arize_enabled),
+        conversation_memory=ConversationMemory(max_conversations=100),
+        thread_store=CustomerThreadStore(settings.thread_store_path),
         auto_approve=auto_approve,
         interactive=interactive,
         review_store=ReviewStore(settings.reviewer_db_path),

@@ -1,6 +1,8 @@
-from src.agents.groundedness import GroundednessJudgment
-from src.audit.logger import AuditLogger
+from src.agents.response_agent import GroundednessJudgment
 from src.config.settings import get_settings
+from src.logging.audit_logger import AuditLogger
+from src.memory.conversation_memory import ConversationMemory
+from src.memory.customer_thread_store import CustomerThreadStore
 from src.graph.deps import GraphDeps
 from src.graph.nodes import confidence_recheck as confidence_recheck_module
 from src.models.ticket import Ticket
@@ -14,6 +16,8 @@ def _deps(tmp_path) -> GraphDeps:
         llm=None,
         retriever=None,
         audit_logger=AuditLogger(tmp_path / "audit.jsonl"),
+        conversation_memory=ConversationMemory(),
+        thread_store=CustomerThreadStore(tmp_path / "threads.db"),
         auto_approve=True,
     )
 

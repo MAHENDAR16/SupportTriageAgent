@@ -3,7 +3,12 @@ app:
   environment: dev
   allow_auto_send: false
   pii_redaction_enabled: true
-  audit_log_path: outputs/audit_log.jsonl
+  audit_log_path: outputs/audit_logs/audit_log.jsonl
+  reviewer_db_path: outputs/databases/triage.db
+  thread_store_path: outputs/databases/threads.db
+  results_dir: outputs/results
+  drafted_replies_dir: outputs/drafted_replies
+  evaluation_reports_dir: outputs/evaluation_reports
   reviewer_mode: cli_stub
   max_retrieval_attempts: 2
   # Raw FAISS cosine-similarity score against all-MiniLM-L6-v2 embeddings of
@@ -15,7 +20,6 @@ app:
   # from the raw retrieval-similarity groundedness_score above. Used by the
   # Phase 2 confidence_recheck node as a stricter, draft-text-level check.
   llm_groundedness_threshold: 0.75
-  reviewer_db_path: outputs/triage.db
   categories:
     - refund_request
     - subscription_cancellation

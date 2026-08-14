@@ -53,7 +53,7 @@ def main() -> None:
         auto_approve=args.auto_approve, interactive=not args.queue, settings=settings
     )
     graph = build_graph(deps)
-    results_dir = settings.audit_log_path.parent / "results"
+    results_dir = settings.results_dir
 
     tickets = load_tickets(settings)
     if args.ticket:

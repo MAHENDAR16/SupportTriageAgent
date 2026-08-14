@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from src.agents.groundedness import judge_groundedness
+from src.agents.response_agent import judge_groundedness
 from src.graph.deps import GraphDeps
 from src.graph.state import GraphState
 
