@@ -1,0 +1,49 @@
+{
+  "ticket": {
+    "ticket_id": "TCK-1015",
+    "customer_id": "CUST-015",
+    "subject": "Dispute annual renewal charge",
+    "message": "My subscription (SUB-8823) auto-renewed for the annual plan and I want to dispute this charge -- I thought I had cancelled.",
+    "conversation_history": [],
+    "priority": "high",
+    "category": "subscription_cancellation",
+    "order_id": null,
+    "account_id": null,
+    "subscription_id": "SUB-8823",
+    "days_since_purchase": null,
+    "previous_refund_request_count": 0,
+    "days_since_last_refund_request": null
+  },
+  "sentiment": "negative",
+  "detected_category": "refund_request",
+  "requires_more_info": false,
+  "missing_fields": [],
+  "abuse_detected": false,
+  "conversation_context": "(no conversation history)",
+  "retrieved_chunks": [
+    {
+      "source": "subscription_policy.md",
+      "text": "# Subscription Policy\n\n## Billing and Renewal\n- Monthly and annual subscriptions renew automatically unless the customer cancels before the renewal date.\n- Cancellation requests are effective at the end of the current billing period unless otherwise stated by the account settings.\n- Customers may cancel their subscription at any time, but no refund is guaranteed for the current billing period.",
+      "score": 0.6443459987640381
+    },
+    {
+      "source": "subscription_policy.md",
+      "text": "## Plan Changes\n- Customers may switch plans at any time from the billing settings page.\n- Plan changes take effect at the next billing cycle.\n\n## Escalation Guidance\nEscalate when:\n- the customer disputes a renewal charge,\n- the account shows a failed payment but the customer disputes the charge,\n- or the customer requests a special exception outside standard billing policy.",
+      "score": 0.5006752610206604
+    },
+    {
+      "source": "refund_policy.md",
+      "text": "## Escalation Guidance\nEscalate when:\n- the refund request is outside the 7-day window,\n- the customer submits a repeat refund request,\n- or the policy cannot be verified from the available information.",
+      "score": 0.42536216974258423
+    }
+  ],
+  "draft_reply": "Draft Reply:\n\nAccording to our subscription policy [source: subscription_policy.md], monthly and annual subscriptions renew automatically unless the customer cancels before the renewal date. It is stated that cancellation requests are effective at the end of the current billing period unless otherwise stated by the account settings. \n\nSince you are disputing a renewal charge, this issue falls under our escalation guidance [source: subscription_policy.md]. We recommend escalating this matter to further investigate and resolve the dispute regarding your annual renewal charge for subscription SUB-8823. \n\nPlease allow us to escalate this issue to the relevant team for further assistance.",
+  "fabricated_citations": [],
+  "route_decision": "ESCALATE",
+  "route_reason": "refund_outside_window",
+  "groundedness_score": 0.6443459987640381,
+  "retrieval_attempts": 1,
+  "reviewer_action": null,
+  "reviewer_comments": null,
+  "review_id": 15
+}

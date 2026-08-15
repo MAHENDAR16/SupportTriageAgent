@@ -1,0 +1,53 @@
+{
+  "ticket": {
+    "ticket_id": "TCK-1011",
+    "customer_id": "CUST-011",
+    "subject": "Refund exactly 7 days after purchase",
+    "message": "I purchased the plan exactly 7 days ago (order ORD-4410) and would like a refund since I'm not satisfied.",
+    "conversation_history": [],
+    "priority": "medium",
+    "category": "refund_request",
+    "order_id": "ORD-4410",
+    "account_id": null,
+    "subscription_id": null,
+    "days_since_purchase": 7,
+    "previous_refund_request_count": 0,
+    "days_since_last_refund_request": null
+  },
+  "sentiment": "negative",
+  "detected_category": "refund_request",
+  "requires_more_info": false,
+  "missing_fields": [],
+  "abuse_detected": false,
+  "conversation_context": "(no conversation history)",
+  "retrieved_chunks": [
+    {
+      "source": "refund_policy.md",
+      "text": "# Refund Policy\n\n## Scope\nThis policy applies to purchases made through the company support portal and subscription services.\n\n## Refund Eligibility\n- Refund requests are accepted only within 7 days of the original purchase date.\n- If the customer requests a refund after 7 days, the request is not eligible for a refund under standard policy.\n- Refunds for annual plans are reviewed case by case and may be denied if the plan was already used for a significant period.",
+      "score": 0.6479724645614624
+    },
+    {
+      "source": "refund_policy.md",
+      "text": "## Escalation Guidance\nEscalate when:\n- the refund request is outside the 7-day window,\n- the customer submits a repeat refund request,\n- or the policy cannot be verified from the available information.",
+      "score": 0.5580390691757202
+    },
+    {
+      "source": "refund_policy.md",
+      "text": "## Repeated Refund Requests\n- If a customer submits multiple refund requests for the same order within 90 days, the case should be flagged as a repeat request and escalated to a specialist.\n- Repeated refund abuse may trigger a scripted refusal.\n\n## Required Information\nTo process a refund review, the support team should request the order ID or account email when the customer has not provided it.",
+      "score": 0.5329171419143677
+    }
+  ],
+  "draft_reply": "Draft Reply:\n\nDear Customer,\n\nThank you for reaching out to us regarding your refund request for order ORD-4410. According to our refund policy [source: refund_policy.md], refund requests are accepted only within 7 days of the original purchase date. Since you are requesting a refund exactly 7 days after your purchase, your request is eligible for review under our standard policy [source: refund_policy.md].\n\nWe will proceed with reviewing your refund request. If there's any additional information needed from you, we will be in touch. Please allow us to process your request, and we will notify you of the outcome.\n\nThank you for your patience and cooperation.\n\nBest regards,\nSupport Team",
+  "fabricated_citations": [],
+  "route_decision": "AUTO_RESOLVE",
+  "route_reason": "policy_grounded_response",
+  "groundedness_score": 0.6479724645614624,
+  "retrieval_attempts": 1,
+  "llm_groundedness_score": 1.0,
+  "unsupported_claims": [],
+  "llm_groundedness_passed": true,
+  "query_reformulation_hint": "",
+  "reviewer_action": null,
+  "reviewer_comments": null,
+  "review_id": 11
+}

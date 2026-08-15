@@ -1,0 +1,13 @@
+Draft Reply:
+
+Dear Customer,
+
+Thank you for reaching out about the billing charge issue. To investigate this further, I would like to confirm your subscription plan and billing date, as per our troubleshooting guidelines [source: troubleshooting_faq.md]. 
+
+Before proceeding, could you please provide one of the following to verify your account ownership: the registered email address, the account ID, or the most recent order ID, as outlined in our account access FAQ [source: account_access_faq.md]?
+
+If the issue persists after verification, and you dispute the renewal charge, we may need to escalate this matter [source: subscription_policy.md] and follow the escalation guidance provided [source: subscription_policy.md] and [source: account_access_faq.md].
+
+Please let me know how I can assist you further.
+
+Recommended Action: If the customer's issue cannot be resolved after verifying the subscription plan and billing date, escalate the issue as it may involve a disputed renewal charge [source: subscription_policy.md].

@@ -1,0 +1,12 @@
+Draft Reply:
+
+Dear Customer,
+
+Thank you for reaching out to us regarding your refund request for order ORD-4410. According to our refund policy [source: refund_policy.md], refund requests are accepted only within 7 days of the original purchase date. Since you are requesting a refund exactly 7 days after your purchase, your request is eligible for review under our standard policy [source: refund_policy.md].
+
+We will proceed with reviewing your refund request. If there's any additional information needed from you, we will be in touch. Please allow us to process your request, and we will notify you of the outcome.
+
+Thank you for your patience and cooperation.
+
+Best regards,
+Support Team
