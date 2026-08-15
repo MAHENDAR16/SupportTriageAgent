@@ -5,7 +5,7 @@ from src.agents.rag_agent import RAGAgent
 from src.agents.response_agent import compute_groundedness, find_fabricated_citations
 from src.agents.sentiment_agent import ClassificationResult
 from src.config.settings import Settings
-from src.graph.state import RetrievedChunk
+from src.graph.graph_state import RetrievedChunk
 from src.models.ticket import Ticket
 
 

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from src.config.settings import Settings
-from src.graph.state import RetrievedChunk
+from src.graph.graph_state import RetrievedChunk
 from src.rag.retriever import Retriever, build_retriever
 
 

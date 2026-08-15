@@ -223,7 +223,7 @@ class Settings:
     # Returns the absolute path to the golden dataset used for evaluation.
     @property
     def golden_dataset_path(self) -> Path:
-        return REPO_ROOT / "evaluation" / "golden_dataset.json"
+        return REPO_ROOT / "data" / "evaluation" / "golden_dataset.json"
 
 
 # Builds (and memoizes via lru_cache) the single process-wide Settings

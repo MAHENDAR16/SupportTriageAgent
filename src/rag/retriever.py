@@ -5,7 +5,7 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 
 from src.config.settings import Settings
-from src.graph.state import RetrievedChunk
+from src.graph.graph_state import RetrievedChunk
 from src.rag.kb_loader import load_kb_chunks
 
 

@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from src.graph.deps import GraphDeps
-from src.graph.state import GraphState
+from src.graph.graph_state import GraphState
 
 
 @dataclass

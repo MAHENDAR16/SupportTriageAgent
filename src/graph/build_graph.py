@@ -17,7 +17,7 @@ from src.graph.nodes.ingest import make_ingest_node
 from src.graph.nodes.rag_retrieve import make_rag_retrieve_node
 from src.graph.nodes.route_decision import make_route_decision_node
 from src.graph.nodes.sentiment_policy_check import make_sentiment_policy_check_node
-from src.graph.state import GraphState
+from src.graph.graph_state import GraphState
 from src.persistence.db import ReviewStore
 from src.rag.retriever import build_retriever
 

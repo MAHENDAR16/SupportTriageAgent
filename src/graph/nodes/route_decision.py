@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from src.graph.deps import GraphDeps
-from src.graph.state import GraphState
+from src.graph.graph_state import GraphState
 from src.rules.escalation_rules import detect_escalation_keywords
 from src.rules.refund_rules import (
     check_refund_window,

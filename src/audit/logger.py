@@ -4,7 +4,7 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
-from src.graph.state import AuditLogEntry
+from src.graph.graph_state import AuditLogEntry
 
 
 class AuditLogger:

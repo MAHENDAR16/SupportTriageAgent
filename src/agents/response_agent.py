@@ -6,7 +6,7 @@ import re
 from langchain_core.prompts import ChatPromptTemplate
 from pydantic import BaseModel, Field, field_validator
 
-from src.graph.state import RetrievedChunk
+from src.graph.graph_state import RetrievedChunk
 from src.models.ticket import Ticket
 
 CITATION_PATTERN = re.compile(r"\[source:\s*([\w\-. ]+?)\]", re.IGNORECASE)
