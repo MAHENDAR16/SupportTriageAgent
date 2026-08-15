@@ -1,0 +1,52 @@
+{
+  "ticket": {
+    "ticket_id": "TCK-1005",
+    "customer_id": "CUST-005",
+    "subject": "Cannot sign in",
+    "message": "I cannot log in to my account and I need help accessing my profile.",
+    "conversation_history": [],
+    "priority": "high",
+    "category": "login_access",
+    "order_id": null,
+    "account_id": null,
+    "subscription_id": null,
+    "days_since_purchase": null,
+    "previous_refund_request_count": 0,
+    "days_since_last_refund_request": null
+  },
+  "sentiment": "neutral",
+  "detected_category": "login_access",
+  "requires_more_info": true,
+  "missing_fields": [
+    "account identifier",
+    "error description"
+  ],
+  "abuse_detected": false,
+  "conversation_context": "(no conversation history)",
+  "retrieved_chunks": [
+    {
+      "source": "account_access_faq.md",
+      "text": "# Account Access FAQ\n\n## Common Issues\n- Password reset: Customers can use the password reset link on the login page.\n- Login problems: If the customer cannot access the account, confirm the email address used for registration.\n- Account lockout: If the account is locked after repeated failed attempts, the user should wait 15 minutes before trying again.",
+      "score": 0.4732602536678314
+    },
+    {
+      "source": "account_access_faq.md",
+      "text": "## Required Information\nBefore troubleshooting account access, request one of the following if not already provided:\n- the registered email address,\n- the account ID,\n- or the most recent order ID.\n\n## Escalation Guidance\nEscalate to support if:\n- the customer cannot verify their account ownership,\n- the account is suspected to be compromised,\n- or the requested information is missing after one follow-up request.",
+      "score": 0.41072016954421997
+    },
+    {
+      "source": "troubleshooting_faq.md",
+      "text": "# Troubleshooting FAQ\n\n## Common Technical Issues\n- If the app is not loading, ask the user to refresh the browser and check the internet connection.\n- If the customer cannot log in, verify the username and password and use the password reset function.\n- If the customer reports a billing mismatch, confirm the subscription plan and billing date before answering.",
+      "score": 0.38606905937194824
+    }
+  ],
+  "draft_reply": "Draft Reply:\n\nDear Customer,\n\nThank you for reaching out to us about the issue with signing in to your account. To assist you with accessing your profile, I would like to troubleshoot the common issues first. According to our account access FAQ [source: account_access_faq.md], if you're having login problems, please confirm the email address used for registration. Additionally, if you've had repeated failed attempts, please wait 15 minutes before trying again as the account may be locked out [source: account_access_faq.md].\n\nTo better assist you, could you please provide one of the following if not already provided: the registered email address, the account ID, or the most recent order ID [source: account_access_faq.md]? This information will help us verify your account ownership and troubleshoot the issue further.\n\nIf the issue persists after trying the above steps, we may need to escalate this to our support team for further assistance [source: account_access_faq.md]. \n\nPlease let me know if there's any additional information I can assist you with.\n\nBest regards,\nSupport Team",
+  "fabricated_citations": [],
+  "route_decision": "ASK_INFO",
+  "route_reason": "missing_required_fields",
+  "groundedness_score": 0.4732602536678314,
+  "retrieval_attempts": 1,
+  "reviewer_action": "APPROVED",
+  "reviewer_comments": "asking for user info to confirm identity",
+  "review_id": 5
+}

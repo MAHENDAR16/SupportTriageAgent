@@ -1,10 +1,13 @@
 from __future__ import annotations
 
 from src.graph.deps import GraphDeps
-from src.graph.state import GraphState
+from src.graph.graph_state import GraphState
 
 
+# Factory closing over deps; returns the human-in-the-loop gate node function.
 def make_hitl_gate_node(deps: GraphDeps):
+    # Resolves the review outcome (auto-approved, interactive CLI prompt, or
+    # left PENDING_REVIEW for the async queue/UI) and persists it to the reviewer DB.
     def hitl_gate(state: GraphState) -> dict:
         ticket = state["ticket"]
         sources = [c["source"] for c in state.get("retrieved_chunks", [])]

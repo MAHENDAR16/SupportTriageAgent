@@ -1,10 +1,15 @@
 from __future__ import annotations
 
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
 import streamlit as st
 
 from src.config.settings import get_settings
 from src.graph.build_graph import build_default_deps, build_graph
-from src.services import review_service
+from src.hitl import approval_queue, reviewer_actions
 
 st.set_page_config(page_title="Support Triage Reviewer", layout="wide")
 
@@ -14,7 +19,7 @@ def _get_deps_and_graph():
     settings = get_settings()
     deps = build_default_deps(auto_approve=False, interactive=False, settings=settings)
     graph = build_graph(deps)
-    tickets_by_id = review_service.load_tickets_by_id(settings)
+    tickets_by_id = approval_queue.load_tickets_by_id(settings)
     return deps, graph, tickets_by_id
 
 
@@ -36,17 +41,17 @@ with st.sidebar:
     ticket_id = st.selectbox("Ticket", sorted(tickets_by_id.keys()))
     if st.button("Run agent", type="primary"):
         with st.spinner(f"Running the triage agent on {ticket_id}..."):
-            review_service.process_ticket(ticket_id, deps, graph, tickets_by_id)
+            reviewer_actions.process_ticket(ticket_id, deps, graph, tickets_by_id)
         st.success(f"{ticket_id} processed — see the queue below.")
         st.rerun()
 
     st.divider()
-    st.metric("Pending review", len(review_service.list_pending(deps)))
+    st.metric("Pending review", len(approval_queue.list_pending(deps)))
 
 tab_queue, tab_history = st.tabs(["Queue", "History"])
 
 with tab_queue:
-    pending = review_service.list_pending(deps)
+    pending = approval_queue.list_pending(deps)
     if not pending:
         st.info("No tickets waiting for review. Process one from the sidebar.")
 
@@ -76,17 +81,17 @@ with tab_queue:
             with right:
                 comments = st.text_input("Comments", key=f"comments_{record['id']}")
                 if st.button("Approve", key=f"approve_{record['id']}", type="primary"):
-                    review_service.submit_review(record["id"], "APPROVED", deps, comments=comments)
+                    reviewer_actions.approve_review(record["id"], deps, comments=comments)
                     st.rerun()
                 if st.button("Reject", key=f"reject_{record['id']}"):
-                    review_service.submit_review(record["id"], "REJECTED", deps, comments=comments)
+                    reviewer_actions.reject_review(record["id"], deps, comments=comments)
                     st.rerun()
                 if st.button("Escalate", key=f"escalate_{record['id']}"):
-                    review_service.submit_review(record["id"], "ESCALATED", deps, comments=comments)
+                    reviewer_actions.escalate_review(record["id"], deps, comments=comments)
                     st.rerun()
                 if st.button("Regenerate", key=f"regen_{record['id']}"):
                     with st.spinner("Regenerating draft..."):
-                        review_service.regenerate(record["id"], deps, graph, tickets_by_id)
+                        reviewer_actions.regenerate(record["id"], deps, graph, tickets_by_id)
                     st.rerun()
 
             with st.expander("Edit reply"):
@@ -94,13 +99,11 @@ with tab_queue:
                     "Edited reply", record["draft_reply"], key=f"edit_{record['id']}", height=150
                 )
                 if st.button("Save edit & approve", key=f"save_edit_{record['id']}"):
-                    review_service.submit_review(
-                        record["id"], "EDITED", deps, comments=comments, edited_reply=edited
-                    )
+                    reviewer_actions.edit_review(record["id"], edited, deps, comments=comments)
                     st.rerun()
 
 with tab_history:
-    history = review_service.list_all(deps)
+    history = approval_queue.list_all(deps)
     if not history:
         st.info("No review history yet.")
     else:

@@ -1,0 +1,51 @@
+{
+  "ticket": {
+    "ticket_id": "TCK-1006",
+    "customer_id": "CUST-006",
+    "subject": "Reset password",
+    "message": "I forgot my password and need to reset it for my account.",
+    "conversation_history": [],
+    "priority": "medium",
+    "category": "login_access",
+    "order_id": null,
+    "account_id": null,
+    "subscription_id": null,
+    "days_since_purchase": null,
+    "previous_refund_request_count": 0,
+    "days_since_last_refund_request": null
+  },
+  "sentiment": "neutral",
+  "detected_category": "login_access",
+  "requires_more_info": true,
+  "missing_fields": [
+    "account identifier"
+  ],
+  "abuse_detected": false,
+  "conversation_context": "(no conversation history)",
+  "retrieved_chunks": [
+    {
+      "source": "account_access_faq.md",
+      "text": "# Account Access FAQ\n\n## Common Issues\n- Password reset: Customers can use the password reset link on the login page.\n- Login problems: If the customer cannot access the account, confirm the email address used for registration.\n- Account lockout: If the account is locked after repeated failed attempts, the user should wait 15 minutes before trying again.",
+      "score": 0.5989960432052612
+    },
+    {
+      "source": "account_access_faq.md",
+      "text": "## Required Information\nBefore troubleshooting account access, request one of the following if not already provided:\n- the registered email address,\n- the account ID,\n- or the most recent order ID.\n\n## Escalation Guidance\nEscalate to support if:\n- the customer cannot verify their account ownership,\n- the account is suspected to be compromised,\n- or the requested information is missing after one follow-up request.",
+      "score": 0.3418136537075043
+    },
+    {
+      "source": "troubleshooting_faq.md",
+      "text": "# Troubleshooting FAQ\n\n## Common Technical Issues\n- If the app is not loading, ask the user to refresh the browser and check the internet connection.\n- If the customer cannot log in, verify the username and password and use the password reset function.\n- If the customer reports a billing mismatch, confirm the subscription plan and billing date before answering.",
+      "score": 0.3155782222747803
+    }
+  ],
+  "draft_reply": "Draft Reply:\n\nTo reset your password, you can use the password reset link on the login page [source: account_access_faq.md]. This should allow you to create a new password and regain access to your account. If you have any issues with this process or need further assistance, please let me know and I'll be happy to help. \n\nBefore proceeding, could you please confirm your registered email address, account ID, or most recent order ID for verification purposes [source: account_access_faq.md]?",
+  "fabricated_citations": [],
+  "route_decision": "ASK_INFO",
+  "route_reason": "missing_required_fields",
+  "groundedness_score": 0.5989960432052612,
+  "retrieval_attempts": 1,
+  "reviewer_action": "APPROVED",
+  "reviewer_comments": "",
+  "review_id": 6
+}

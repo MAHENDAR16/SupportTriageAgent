@@ -1,0 +1,14 @@
+Draft Reply:
+
+Dear Customer,
+
+Thank you for reaching out to us about the suspicious login activity on your account (ACC-7742). To better assist you, we would like to confirm your account ownership. According to our account access FAQ [source: account_access_faq.md], if the account is suspected to be compromised, we should escalate the issue to support. 
+
+Before escalating, we would like to request some additional information to help diagnose the issue, as per our troubleshooting FAQ [source: troubleshooting_faq.md]. Could you please provide us with the device or browser being used, the date the issue started, and the exact error message you are seeing?
+
+If we cannot verify your account ownership or gather sufficient information, we will escalate the issue to our support team for further investigation, as guided by our escalation guidance [source: account_access_faq.md] and [source: troubleshooting_faq.md].
+
+We appreciate your cooperation and look forward to resolving this matter.
+
+Best regards,
+Support Team

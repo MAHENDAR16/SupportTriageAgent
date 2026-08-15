@@ -1,0 +1,14 @@
+Draft Reply:
+
+Dear Customer,
+
+Thank you for reaching out to us about the issue with the app crashing when you open the dashboard. To troubleshoot this issue, we can start by checking if the problem is related to your browser or internet connection. According to our troubleshooting FAQ [source: troubleshooting_faq.md], if the app is not loading, we should first ask you to refresh the browser and check the internet connection.
+
+However, since you've mentioned that the app crashes after opening the dashboard, which is a more specific issue, we may need more information to diagnose the problem. As per our guidelines [source: troubleshooting_faq.md], we typically ask for more details such as the device or browser being used, the date the issue started, the exact error message, or the account identifier to better understand the issue.
+
+Given that the issue is related to a technical problem that may require more in-depth investigation, especially considering it started after the latest update, we may need to escalate this issue for further assistance [source: troubleshooting_faq.md]. 
+
+We recommend escalating this issue to our technical support team for a more detailed investigation.
+
+Best regards,
+[Your Name]

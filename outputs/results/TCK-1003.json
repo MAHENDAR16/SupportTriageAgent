@@ -1,0 +1,49 @@
+{
+  "ticket": {
+    "ticket_id": "TCK-1003",
+    "customer_id": "CUST-003",
+    "subject": "Refund after 10 days",
+    "message": "My subscription renewed 12 days ago (order ORD-3007) and I want a refund now.",
+    "conversation_history": [],
+    "priority": "medium",
+    "category": "refund_request",
+    "order_id": "ORD-3007",
+    "account_id": null,
+    "subscription_id": null,
+    "days_since_purchase": 12,
+    "previous_refund_request_count": 0,
+    "days_since_last_refund_request": null
+  },
+  "sentiment": "negative",
+  "detected_category": "refund_request",
+  "requires_more_info": false,
+  "missing_fields": [],
+  "abuse_detected": false,
+  "conversation_context": "(no conversation history)",
+  "retrieved_chunks": [
+    {
+      "source": "refund_policy.md",
+      "text": "# Refund Policy\n\n## Scope\nThis policy applies to purchases made through the company support portal and subscription services.\n\n## Refund Eligibility\n- Refund requests are accepted only within 7 days of the original purchase date.\n- If the customer requests a refund after 7 days, the request is not eligible for a refund under standard policy.\n- Refunds for annual plans are reviewed case by case and may be denied if the plan was already used for a significant period.",
+      "score": 0.5843569040298462
+    },
+    {
+      "source": "refund_policy.md",
+      "text": "## Repeated Refund Requests\n- If a customer submits multiple refund requests for the same order within 90 days, the case should be flagged as a repeat request and escalated to a specialist.\n- Repeated refund abuse may trigger a scripted refusal.\n\n## Required Information\nTo process a refund review, the support team should request the order ID or account email when the customer has not provided it.",
+      "score": 0.5396114587783813
+    },
+    {
+      "source": "refund_policy.md",
+      "text": "## Escalation Guidance\nEscalate when:\n- the refund request is outside the 7-day window,\n- the customer submits a repeat refund request,\n- or the policy cannot be verified from the available information.",
+      "score": 0.5104615092277527
+    }
+  ],
+  "draft_reply": "Draft Reply:\n\nDear Customer,\n\nThank you for reaching out to us regarding your refund request for order ORD-3007. According to our refund policy [source: refund_policy.md], refund requests are accepted only within 7 days of the original purchase date. Since your subscription renewed 12 days ago, your request is outside the standard 7-day refund window [source: refund_policy.md].\n\nAs per our escalation guidance [source: refund_policy.md], we recommend escalating this case because the refund request is outside the 7-day window. We will review your case, but please note that refunds for annual plans are reviewed case by case and may be denied if the plan was already used for a significant period [source: refund_policy.md].\n\nWe will escalate your request to a specialist for further review. They will be in touch with you to discuss the possibilities of a refund.\n\nThank you for your understanding.\n\nBest regards,\nSupport Team",
+  "fabricated_citations": [],
+  "route_decision": "ESCALATE",
+  "route_reason": "refund_outside_window",
+  "groundedness_score": 0.5843569040298462,
+  "retrieval_attempts": 1,
+  "reviewer_action": "APPROVED",
+  "reviewer_comments": "",
+  "review_id": 3
+}

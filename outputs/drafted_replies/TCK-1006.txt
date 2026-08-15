@@ -1,0 +1,5 @@
+Draft Reply:
+
+To reset your password, you can use the password reset link on the login page [source: account_access_faq.md]. This should allow you to create a new password and regain access to your account. If you have any issues with this process or need further assistance, please let me know and I'll be happy to help. 
+
+Before proceeding, could you please confirm your registered email address, account ID, or most recent order ID for verification purposes [source: account_access_faq.md]?

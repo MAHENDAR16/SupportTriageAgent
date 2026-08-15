@@ -1,10 +1,11 @@
 from __future__ import annotations
 
-from src.agents.groundedness import judge_groundedness
+from src.agents.response_agent import judge_groundedness
 from src.graph.deps import GraphDeps
-from src.graph.state import GraphState
+from src.graph.graph_state import GraphState
 
 
+# Factory closing over deps; returns the confidence-recheck node function.
 def make_confidence_recheck_node(deps: GraphDeps):
     """Only reached when route_decision == AUTO_RESOLVE (see build_graph's
     conditional edges). Runs a stricter LLM-as-judge check on the actual
@@ -13,6 +14,8 @@ def make_confidence_recheck_node(deps: GraphDeps):
     Retries retrieval with a reformulated query up to max_retrieval_attempts
     before forcing ESCALATE."""
 
+    # Judges groundedness of the draft; on failure either signals a retry
+    # (if attempts remain) or force-overrides route_decision to ESCALATE.
     def confidence_recheck(state: GraphState) -> dict:
         ticket = state["ticket"]
         settings = deps.settings

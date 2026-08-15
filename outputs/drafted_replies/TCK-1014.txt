@@ -1,0 +1,12 @@
+Draft Reply:
+
+Dear Customer,
+
+To cancel your plan, you can switch to a different plan or cancel your current subscription from the billing settings page [source: subscription_policy.md]. If you're unsure which plan you're currently on, you can check your account settings or billing history to confirm.
+
+Please note that cancellation requests are effective at the end of the current billing period, unless otherwise stated by your account settings [source: subscription_policy.md]. Additionally, no refund is guaranteed for the current billing period [source: subscription_policy.md].
+
+If you need assistance with locating your current plan or have questions about the cancellation process, I'd be happy to help. However, if you have any disputes or concerns about your billing or would like to request a special exception, I may need to escalate your issue [source: subscription_policy.md, source: refund_policy.md].
+
+Best regards,
+[Your Name]

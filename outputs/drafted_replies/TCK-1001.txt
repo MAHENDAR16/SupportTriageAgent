@@ -1,0 +1,16 @@
+Draft Reply:
+
+Dear Customer,
+
+Thank you for reaching out to us about your refund request for order ORD-1002. According to our refund policy [source: refund_policy.md], refund requests are accepted only within 7 days of the original purchase date. Since you were charged yesterday, your request is within the eligible timeframe.
+
+However, refunds for annual plans are reviewed case by case and may be denied if the plan was already used for a significant period [source: refund_policy.md]. We would like to review your case further.
+
+Could you please provide more information about your reason for requesting a refund? Additionally, we will review your account and order details to determine the best course of action.
+
+If our standard policy cannot be applied to your situation, we may need to escalate your request to a specialist [source: refund_policy.md].
+
+Thank you for your patience and cooperation.
+
+Best regards,
+Support Team

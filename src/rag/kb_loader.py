@@ -5,6 +5,8 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from src.config.settings import Settings
 
 
+# Reads every .md file under kb_dir and splits it into overlapping chunks
+# (500 chars, 50 overlap), each tagged with its source filename.
 def load_kb_chunks(settings: Settings) -> list[dict]:
     """Load every markdown file in the knowledge base, split into chunks
     tagged with their source filename."""

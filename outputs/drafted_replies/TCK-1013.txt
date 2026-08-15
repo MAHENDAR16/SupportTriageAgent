@@ -1,0 +1,14 @@
+Draft Reply:
+
+Dear Customer,
+
+Thank you for reaching out to us about the issue you're experiencing. To better assist you, we need more information to diagnose the problem. According to our troubleshooting guidelines [source: troubleshooting_faq.md], it would be helpful to know the device or browser you're using, the date the issue started, the exact error message you're seeing, or your account identifier.
+
+Could you please provide us with more details about the issue you're encountering? This will help us to provide a more accurate and efficient solution.
+
+If we're unable to resolve the issue through standard troubleshooting steps, we may need to escalate the matter for further investigation [source: troubleshooting_faq.md].
+
+Looking forward to hearing back from you with more information.
+
+Best regards,
+[Your Name]

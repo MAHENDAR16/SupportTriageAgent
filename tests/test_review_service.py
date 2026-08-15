@@ -1,15 +1,17 @@
-from src.agents.classifier import ClassificationResult
-from src.agents.groundedness import GroundednessJudgment
-from src.audit.logger import AuditLogger
+from src.agents.response_agent import GroundednessJudgment
+from src.agents.sentiment_agent import ClassificationResult
 from src.config.settings import get_settings
+from src.logging.audit_logger import AuditLogger
+from src.memory.conversation_memory import ConversationMemory
+from src.memory.customer_thread_store import CustomerThreadStore
 from src.graph import build_graph as build_graph_module
 from src.graph.deps import GraphDeps
 from src.graph.nodes import confidence_recheck as confidence_recheck_module
 from src.graph.nodes import draft_answer as draft_answer_module
 from src.graph.nodes import sentiment_policy_check as sentiment_policy_check_module
+from src.hitl import approval_queue, reviewer_actions
 from src.persistence.db import ReviewStore
 from src.rag.retriever import build_retriever
-from src.services import review_service
 
 settings = get_settings()
 
@@ -20,6 +22,8 @@ def _queue_mode_deps(tmp_path) -> GraphDeps:
         llm=None,  # never actually invoked -- classify/draft/judge are monkeypatched below
         retriever=build_retriever(settings),
         audit_logger=AuditLogger(tmp_path / "audit.jsonl"),
+        conversation_memory=ConversationMemory(),
+        thread_store=CustomerThreadStore(tmp_path / "threads.db"),
         auto_approve=False,
         interactive=False,
         review_store=ReviewStore(tmp_path / "reviews.db"),
@@ -50,15 +54,15 @@ def test_process_ticket_lands_pending_review_without_blocking(tmp_path, monkeypa
     _stub_llm_calls(monkeypatch)
     deps = _queue_mode_deps(tmp_path)
     graph = build_graph_module.build_graph(deps)
-    tickets_by_id = review_service.load_tickets_by_id(settings)
+    tickets_by_id = approval_queue.load_tickets_by_id(settings)
 
-    result = review_service.process_ticket("TCK-1001", deps, graph, tickets_by_id)
+    result = reviewer_actions.process_ticket("TCK-1001", deps, graph, tickets_by_id)
 
     assert result["route_decision"] == "AUTO_RESOLVE"
     assert result["reviewer_action"] is None
     assert result["review_id"] is not None
 
-    pending = review_service.list_pending(deps)
+    pending = approval_queue.list_pending(deps)
     assert len(pending) == 1
     assert pending[0]["ticket_id"] == "TCK-1001"
     assert pending[0]["status"] == "PENDING_REVIEW"
@@ -69,16 +73,16 @@ def test_edit_action_resolves_the_queue_item(tmp_path, monkeypatch):
     _stub_llm_calls(monkeypatch)
     deps = _queue_mode_deps(tmp_path)
     graph = build_graph_module.build_graph(deps)
-    tickets_by_id = review_service.load_tickets_by_id(settings)
+    tickets_by_id = approval_queue.load_tickets_by_id(settings)
 
-    review_service.process_ticket("TCK-1001", deps, graph, tickets_by_id)
-    review_id = review_service.list_pending(deps)[0]["id"]
+    reviewer_actions.process_ticket("TCK-1001", deps, graph, tickets_by_id)
+    review_id = approval_queue.list_pending(deps)[0]["id"]
 
-    review_service.submit_review(
+    reviewer_actions.submit_review(
         review_id, "EDITED", deps, comments="tightened wording", edited_reply="Final edited reply."
     )
 
-    assert review_service.list_pending(deps) == []
+    assert approval_queue.list_pending(deps) == []
     record = deps.review_store.get(review_id)
     assert record["status"] == "EDITED"
     assert record["edited_reply"] == "Final edited reply."
@@ -89,18 +93,18 @@ def test_regenerate_supersedes_old_row_and_creates_a_new_pending_one(tmp_path, m
     _stub_llm_calls(monkeypatch)
     deps = _queue_mode_deps(tmp_path)
     graph = build_graph_module.build_graph(deps)
-    tickets_by_id = review_service.load_tickets_by_id(settings)
+    tickets_by_id = approval_queue.load_tickets_by_id(settings)
 
-    review_service.process_ticket("TCK-1001", deps, graph, tickets_by_id)
-    original_review_id = review_service.list_pending(deps)[0]["id"]
+    reviewer_actions.process_ticket("TCK-1001", deps, graph, tickets_by_id)
+    original_review_id = approval_queue.list_pending(deps)[0]["id"]
 
-    review_service.regenerate(original_review_id, deps, graph, tickets_by_id)
+    reviewer_actions.regenerate(original_review_id, deps, graph, tickets_by_id)
 
     original = deps.review_store.get(original_review_id)
     assert original["status"] == "SUPERSEDED"
     assert original["reviewer_action"] == "REGENERATED"
 
-    pending = review_service.list_pending(deps)
+    pending = approval_queue.list_pending(deps)
     assert len(pending) == 1
     assert pending[0]["id"] != original_review_id
     assert pending[0]["ticket_id"] == "TCK-1001"
@@ -116,13 +120,13 @@ def test_abusive_ticket_bypasses_llm_draft_and_confidence_recheck(tmp_path, monk
     _stub_llm_calls(monkeypatch)
     deps = _queue_mode_deps(tmp_path)
     graph = build_graph_module.build_graph(deps)
-    tickets_by_id = review_service.load_tickets_by_id(settings)
+    tickets_by_id = approval_queue.load_tickets_by_id(settings)
 
-    result = review_service.process_ticket("TCK-1009", deps, graph, tickets_by_id)
+    result = reviewer_actions.process_ticket("TCK-1009", deps, graph, tickets_by_id)
 
     assert result["route_decision"] == "REFUSE"
     assert result["draft_reply"] == settings.refusal_templates["abusive"]
     assert "llm_groundedness_score" not in result  # confidence_recheck never ran
-    pending = review_service.list_pending(deps)
+    pending = approval_queue.list_pending(deps)
     assert len(pending) == 1
     assert pending[0]["route_decision"] == "REFUSE"

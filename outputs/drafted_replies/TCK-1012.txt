@@ -1,0 +1,9 @@
+Draft Reply:
+
+To process your refund request, we need to verify your order details. As per our refund policy [source: refund_policy.md], to proceed with a refund review, we require the order ID or account email associated with the purchase. Could you please provide us with this information?
+
+Once we have the necessary details, we can assess your eligibility for a refund based on our policy [source: refund_policy.md], which states that refund requests are accepted only within 7 days of the original purchase date.
+
+If you have any further questions or concerns, please don't hesitate to reach out. We're here to assist you.
+
+(Note: The customer's question about the refund is partially answered, but the specific eligibility for a refund cannot be determined without the order ID or account email. The response requests the necessary information to proceed with the refund review.)

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from src.graph.deps import GraphDeps
-from src.graph.state import GraphState
+from src.graph.graph_state import GraphState
 from src.rules.escalation_rules import detect_escalation_keywords
 from src.rules.refund_rules import (
     check_refund_window,
@@ -11,7 +11,10 @@ from src.rules.refund_rules import (
 from src.rules.required_fields import missing_required_fields
 
 
+# Factory closing over deps; returns the routing-decision node function.
 def make_route_decision_node(deps: GraphDeps):
+    # Walks the 10-rule precedence chain (abuse -> refund rules -> escalation
+    # -> groundedness -> fabricated citations -> missing fields) to pick a route.
     def route_decision(state: GraphState) -> dict:
         ticket = state["ticket"]
         settings = deps.settings

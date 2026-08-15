@@ -1,0 +1,49 @@
+{
+  "ticket": {
+    "ticket_id": "TCK-1017",
+    "customer_id": "CUST-017",
+    "subject": "GDPR data export request",
+    "message": "I want a complete copy of all my personal data under GDPR and details of your data retention policy.",
+    "conversation_history": [],
+    "priority": "medium",
+    "category": "other",
+    "order_id": null,
+    "account_id": null,
+    "subscription_id": null,
+    "days_since_purchase": null,
+    "previous_refund_request_count": 0,
+    "days_since_last_refund_request": null
+  },
+  "sentiment": "neutral",
+  "detected_category": "other",
+  "requires_more_info": false,
+  "missing_fields": [],
+  "abuse_detected": false,
+  "conversation_context": "(no conversation history)",
+  "retrieved_chunks": [
+    {
+      "source": "account_access_faq.md",
+      "text": "## Required Information\nBefore troubleshooting account access, request one of the following if not already provided:\n- the registered email address,\n- the account ID,\n- or the most recent order ID.\n\n## Escalation Guidance\nEscalate to support if:\n- the customer cannot verify their account ownership,\n- the account is suspected to be compromised,\n- or the requested information is missing after one follow-up request.",
+      "score": 0.1724904179573059
+    },
+    {
+      "source": "refund_policy.md",
+      "text": "# Refund Policy\n\n## Scope\nThis policy applies to purchases made through the company support portal and subscription services.\n\n## Refund Eligibility\n- Refund requests are accepted only within 7 days of the original purchase date.\n- If the customer requests a refund after 7 days, the request is not eligible for a refund under standard policy.\n- Refunds for annual plans are reviewed case by case and may be denied if the plan was already used for a significant period.",
+      "score": 0.1524345576763153
+    },
+    {
+      "source": "troubleshooting_faq.md",
+      "text": "## When to Ask for More Information\nAsk for more information when the ticket does not include enough detail to diagnose the issue, such as:\n- the device or browser being used,\n- the date the issue started,\n- the exact error message,\n- or the account identifier.\n\n## Escalation Guidance\nEscalate when the issue is outside standard troubleshooting steps or requires account-specific investigation.",
+      "score": 0.12332767993211746
+    }
+  ],
+  "draft_reply": "Draft Reply:\n\nRegarding your request for a complete copy of your personal data under GDPR, the provided context does not specify the process or details for handling such requests. Additionally, the data retention policy is not mentioned in the available documents [source: account_access_faq.md, source: refund_policy.md, source: troubleshooting_faq.md]. \n\nAs the relevant policy could not be verified, we recommend escalating this matter to our support team for further assistance. They will be able to provide you with the necessary information and guidance on how to proceed with your GDPR data export request.",
+  "fabricated_citations": [],
+  "route_decision": "ESCALATE",
+  "route_reason": "low_groundedness",
+  "groundedness_score": 0.1724904179573059,
+  "retrieval_attempts": 1,
+  "reviewer_action": "APPROVED",
+  "reviewer_comments": "since there is no policy we should escalate",
+  "review_id": 71
+}

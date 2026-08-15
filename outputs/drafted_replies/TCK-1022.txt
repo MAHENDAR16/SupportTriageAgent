@@ -1,0 +1,14 @@
+Draft Reply:
+
+Dear Customer,
+
+Thank you for reaching out to us about the issue with the app not loading on Safari. According to our troubleshooting guidelines [source: troubleshooting_faq.md], if the app is not loading, we recommend refreshing the browser and checking the internet connection. Could you please try this and see if it resolves the issue?
+
+Additionally, to better assist you, could you please provide more information about the issue, such as the exact error message you're seeing (if any) and the date the issue started [source: troubleshooting_faq.md]? This will help us diagnose the problem more effectively.
+
+If the issue persists after trying the above steps, we may need to escalate this to our support team for further investigation [source: troubleshooting_faq.md]. 
+
+Please let us know if there's any further information we can assist you with.
+
+Best regards,
+Support Team

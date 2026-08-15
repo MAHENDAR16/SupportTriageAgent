@@ -1,0 +1,53 @@
+{
+  "ticket": {
+    "ticket_id": "TCK-1004",
+    "customer_id": "CUST-004",
+    "subject": "Cancel my subscription",
+    "message": "Please cancel my monthly subscription (SUB-4410) before the next billing date.",
+    "conversation_history": [],
+    "priority": "low",
+    "category": "subscription_cancellation",
+    "order_id": null,
+    "account_id": null,
+    "subscription_id": "SUB-4410",
+    "days_since_purchase": null,
+    "previous_refund_request_count": 0,
+    "days_since_last_refund_request": null
+  },
+  "sentiment": "neutral",
+  "detected_category": "subscription_cancellation",
+  "requires_more_info": false,
+  "missing_fields": [],
+  "abuse_detected": false,
+  "conversation_context": "(no conversation history)",
+  "retrieved_chunks": [
+    {
+      "source": "subscription_policy.md",
+      "text": "# Subscription Policy\n\n## Billing and Renewal\n- Monthly and annual subscriptions renew automatically unless the customer cancels before the renewal date.\n- Cancellation requests are effective at the end of the current billing period unless otherwise stated by the account settings.\n- Customers may cancel their subscription at any time, but no refund is guaranteed for the current billing period.",
+      "score": 0.6067150831222534
+    },
+    {
+      "source": "subscription_policy.md",
+      "text": "## Plan Changes\n- Customers may switch plans at any time from the billing settings page.\n- Plan changes take effect at the next billing cycle.\n\n## Escalation Guidance\nEscalate when:\n- the customer disputes a renewal charge,\n- the account shows a failed payment but the customer disputes the charge,\n- or the customer requests a special exception outside standard billing policy.",
+      "score": 0.3927302956581116
+    },
+    {
+      "source": "troubleshooting_faq.md",
+      "text": "# Troubleshooting FAQ\n\n## Common Technical Issues\n- If the app is not loading, ask the user to refresh the browser and check the internet connection.\n- If the customer cannot log in, verify the username and password and use the password reset function.\n- If the customer reports a billing mismatch, confirm the subscription plan and billing date before answering.",
+      "score": 0.3819931447505951
+    }
+  ],
+  "draft_reply": "Draft Reply:\n\nDear Customer,\n\nThank you for reaching out to cancel your subscription. According to our subscription policy [source: subscription_policy.md], cancellation requests are effective at the end of the current billing period unless otherwise stated by the account settings. We will process your cancellation request for subscription SUB-4410, and it will be effective at the end of your current billing period.\n\nPlease note that as per our policy [source: subscription_policy.md], no refund is guaranteed for the current billing period. If you have any further questions or concerns, please don't hesitate to reach out.\n\nBest regards,\n[Your Name]",
+  "fabricated_citations": [],
+  "route_decision": "AUTO_RESOLVE",
+  "route_reason": "policy_grounded_response",
+  "groundedness_score": 0.6067150831222534,
+  "retrieval_attempts": 1,
+  "llm_groundedness_score": 1.0,
+  "unsupported_claims": [],
+  "llm_groundedness_passed": true,
+  "query_reformulation_hint": "",
+  "reviewer_action": "APPROVED",
+  "reviewer_comments": "",
+  "review_id": 55
+}

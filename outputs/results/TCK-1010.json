@@ -1,0 +1,49 @@
+{
+  "ticket": {
+    "ticket_id": "TCK-1010",
+    "customer_id": "CUST-010",
+    "subject": "Refund abuse request",
+    "message": "I want a refund even though I already used the service every day and I will keep asking until I get one.",
+    "conversation_history": [],
+    "priority": "high",
+    "category": "abusive_content",
+    "order_id": null,
+    "account_id": null,
+    "subscription_id": null,
+    "days_since_purchase": null,
+    "previous_refund_request_count": 0,
+    "days_since_last_refund_request": null
+  },
+  "sentiment": "negative",
+  "detected_category": "refund_request",
+  "requires_more_info": false,
+  "missing_fields": [],
+  "abuse_detected": false,
+  "conversation_context": "(no conversation history)",
+  "retrieved_chunks": [
+    {
+      "source": "refund_policy.md",
+      "text": "## Repeated Refund Requests\n- If a customer submits multiple refund requests for the same order within 90 days, the case should be flagged as a repeat request and escalated to a specialist.\n- Repeated refund abuse may trigger a scripted refusal.\n\n## Required Information\nTo process a refund review, the support team should request the order ID or account email when the customer has not provided it.",
+      "score": 0.6329447627067566
+    },
+    {
+      "source": "refund_policy.md",
+      "text": "## Escalation Guidance\nEscalate when:\n- the refund request is outside the 7-day window,\n- the customer submits a repeat refund request,\n- or the policy cannot be verified from the available information.",
+      "score": 0.4937983751296997
+    },
+    {
+      "source": "refund_policy.md",
+      "text": "# Refund Policy\n\n## Scope\nThis policy applies to purchases made through the company support portal and subscription services.\n\n## Refund Eligibility\n- Refund requests are accepted only within 7 days of the original purchase date.\n- If the customer requests a refund after 7 days, the request is not eligible for a refund under standard policy.\n- Refunds for annual plans are reviewed case by case and may be denied if the plan was already used for a significant period.",
+      "score": 0.4678400158882141
+    }
+  ],
+  "draft_reply": "I can't assist with refund abuse or repeated refund requests outside the policy.",
+  "fabricated_citations": [],
+  "route_decision": "REFUSE",
+  "route_reason": "refund_abuse_language_detected",
+  "groundedness_score": 0.6329447627067566,
+  "retrieval_attempts": 1,
+  "reviewer_action": "APPROVED",
+  "reviewer_comments": "",
+  "review_id": 10
+}

@@ -1,0 +1,7 @@
+Draft Reply:
+
+Regarding SAML-based single sign-on for enterprise accounts, the provided context does not mention this topic. Therefore, the relevant policy could not be verified [source: account_access_faq.md, source: subscription_policy.md]. 
+
+As for the request for a dedicated account manager, the context does not address this issue either. The provided information focuses on account access, troubleshooting, and subscription plan changes, without mentioning dedicated account management services.
+
+It is recommended to escalate this inquiry to support, as the context does not provide sufficient information to address the customer's questions about SAML-based single sign-on and dedicated account management [source: account_access_faq.md, source: subscription_policy.md].

@@ -1,12 +1,15 @@
 from __future__ import annotations
 
-from src.agents.classifier import classify_ticket
+from src.agents.sentiment_agent import classify_ticket
 from src.graph.deps import GraphDeps
-from src.graph.state import GraphState
+from src.graph.graph_state import GraphState
 from src.rules.abuse_detection import detect_abuse
 
 
+# Factory closing over deps; returns the sentiment/abuse-check node function.
 def make_sentiment_policy_check_node(deps: GraphDeps):
+    # Runs the deterministic keyword abuse check and the LLM sentiment/
+    # category classifier, then logs both results to the audit trail.
     def sentiment_policy_check(state: GraphState) -> dict:
         ticket = state["ticket"]
 

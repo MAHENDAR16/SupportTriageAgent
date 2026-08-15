@@ -1,0 +1,49 @@
+{
+  "ticket": {
+    "ticket_id": "TCK-1018",
+    "customer_id": "CUST-018",
+    "subject": "Enterprise SSO integration",
+    "message": "Does your platform support SAML-based single sign-on for enterprise accounts, and can we get a dedicated account manager?",
+    "conversation_history": [],
+    "priority": "low",
+    "category": "other",
+    "order_id": null,
+    "account_id": null,
+    "subscription_id": null,
+    "days_since_purchase": null,
+    "previous_refund_request_count": 0,
+    "days_since_last_refund_request": null
+  },
+  "sentiment": "neutral",
+  "detected_category": "login_access",
+  "requires_more_info": false,
+  "missing_fields": [],
+  "abuse_detected": false,
+  "conversation_context": "(no conversation history)",
+  "retrieved_chunks": [
+    {
+      "source": "account_access_faq.md",
+      "text": "# Account Access FAQ\n\n## Common Issues\n- Password reset: Customers can use the password reset link on the login page.\n- Login problems: If the customer cannot access the account, confirm the email address used for registration.\n- Account lockout: If the account is locked after repeated failed attempts, the user should wait 15 minutes before trying again.",
+      "score": 0.25926369428634644
+    },
+    {
+      "source": "account_access_faq.md",
+      "text": "## Required Information\nBefore troubleshooting account access, request one of the following if not already provided:\n- the registered email address,\n- the account ID,\n- or the most recent order ID.\n\n## Escalation Guidance\nEscalate to support if:\n- the customer cannot verify their account ownership,\n- the account is suspected to be compromised,\n- or the requested information is missing after one follow-up request.",
+      "score": 0.19711747765541077
+    },
+    {
+      "source": "subscription_policy.md",
+      "text": "## Plan Changes\n- Customers may switch plans at any time from the billing settings page.\n- Plan changes take effect at the next billing cycle.\n\n## Escalation Guidance\nEscalate when:\n- the customer disputes a renewal charge,\n- the account shows a failed payment but the customer disputes the charge,\n- or the customer requests a special exception outside standard billing policy.",
+      "score": 0.17506228387355804
+    }
+  ],
+  "draft_reply": "Draft Reply:\n\nRegarding SAML-based single sign-on for enterprise accounts, the provided context does not mention this topic. Therefore, the relevant policy could not be verified [source: account_access_faq.md, source: subscription_policy.md]. \n\nAs for the request for a dedicated account manager, the context does not address this issue either. The provided information focuses on account access, troubleshooting, and subscription plan changes, without mentioning dedicated account management services.\n\nIt is recommended to escalate this inquiry to support, as the context does not provide sufficient information to address the customer's questions about SAML-based single sign-on and dedicated account management [source: account_access_faq.md, source: subscription_policy.md].",
+  "fabricated_citations": [],
+  "route_decision": "ESCALATE",
+  "route_reason": "low_groundedness",
+  "groundedness_score": 0.25926369428634644,
+  "retrieval_attempts": 1,
+  "reviewer_action": "APPROVED",
+  "reviewer_comments": "",
+  "review_id": 18
+}

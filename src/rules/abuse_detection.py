@@ -18,6 +18,8 @@ ABUSE_KEYWORDS = [
 ]
 
 
+# Deterministic keyword scan for hostile/threatening language, bypassing
+# the LLM entirely so abuse detection can't be swayed by prompt drift.
 def detect_abuse(message: str) -> bool:
     lowered = message.lower()
     return any(keyword in lowered for keyword in ABUSE_KEYWORDS)

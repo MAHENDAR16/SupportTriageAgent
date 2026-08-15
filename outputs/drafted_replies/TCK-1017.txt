@@ -1,0 +1,5 @@
+Draft Reply:
+
+Regarding your request for a complete copy of your personal data under GDPR, the provided context does not specify the process or details for handling such requests. Additionally, the data retention policy is not mentioned in the available documents [source: account_access_faq.md, source: refund_policy.md, source: troubleshooting_faq.md]. 
+
+As the relevant policy could not be verified, we recommend escalating this matter to our support team for further assistance. They will be able to provide you with the necessary information and guidance on how to proceed with your GDPR data export request.
