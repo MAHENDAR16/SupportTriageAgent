@@ -27,7 +27,10 @@ streamlit>=1.38,<2.0
 pytest>=8.3,<9.0
 
 # Observability & logging
-arize>=7.25,<8.0  # Optional: for Arize AI integration (set ARIZE_API_KEY to enable)
+# Optional: sends LangChain/LangGraph LLM traces to Arize via OpenTelemetry.
+# Enable by setting ARIZE_API_KEY and ARIZE_SPACE_ID.
+arize-otel>=0.13,<1.0
+openinference-instrumentation-langchain>=0.1.70,<0.2
 
 # Provider SDKs used by scripts/ and as fallback clients
 requests>=2.28

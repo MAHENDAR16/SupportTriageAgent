@@ -6,7 +6,10 @@ from src.graph.state import GraphState
 from src.rules.refund_rules import detect_refund_abuse_language
 
 
+# Factory closing over deps; returns the draft-generation node function.
 def make_draft_answer_node(deps: GraphDeps):
+    # Produces the reply text: a scripted refusal for abuse/refund-abuse
+    # cases, or an LLM-generated, citation-checked draft otherwise.
     def draft_answer(state: GraphState) -> dict:
         ticket = state["ticket"]
         retrieved_chunks = state.get("retrieved_chunks", [])

@@ -20,6 +20,8 @@ class ReviewTicketDisplay:
     regenerate_count: int = 0
 
 
+# Pulls the relevant fields out of raw graph state (ticket, route, draft,
+# sources, scores) into the typed ReviewTicketDisplay shape.
 def format_review_for_display(state: GraphState) -> ReviewTicketDisplay:
     """Convert graph state into a formatted display object for the reviewer UI."""
     ticket = state["ticket"]
@@ -37,6 +39,8 @@ def format_review_for_display(state: GraphState) -> ReviewTicketDisplay:
     )
 
 
+# Prints ticket id, route, sources, scores, and draft text to stdout.
+# Used only in the interactive CLI reviewer path, not the async queue/UI path.
 def display_review_cli(display: ReviewTicketDisplay) -> None:
     """Print a formatted review to the terminal for interactive approval."""
     print(f"\n--- Reviewer queue: {display.ticket_id} ---")
@@ -50,6 +54,8 @@ def display_review_cli(display: ReviewTicketDisplay) -> None:
     print(f"Draft:\n{display.draft_reply}")
 
 
+# Blocks on terminal input for an A/R/E keystroke and optional comment text.
+# Defaults to APPROVED if the reviewer enters anything else or presses Enter.
 def get_reviewer_action_cli() -> tuple[str, str | None]:
     """Prompt the reviewer for an action via terminal input.
     Returns (action, comments)."""
@@ -63,10 +69,13 @@ class ApprovalUIStub:
     """Interface stub for both CLI and future UI implementations.
     Abstracts the reviewer interaction layer from the graph engine."""
 
+    # Stores deps and the interactive/async mode flag for present_review().
     def __init__(self, deps: GraphDeps, interactive: bool = True):
         self.deps = deps
         self.interactive = interactive
 
+    # In interactive mode, formats and prints the review then blocks for
+    # reviewer input; in async mode, returns (None, None) immediately.
     def present_review(self, state: GraphState) -> tuple[str, str | None]:
         """Display a review to the reviewer and collect their action.
         Returns (action, comments_optional).

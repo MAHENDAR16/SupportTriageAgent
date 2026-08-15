@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-import os
-
 from langgraph.graph import END, StateGraph
 
 from src.agents.llm_client import build_llm
@@ -10,6 +8,7 @@ from src.graph.deps import GraphDeps
 from src.logging.audit_logger import AuditLogger
 from src.memory.conversation_memory import ConversationMemory
 from src.memory.customer_thread_store import CustomerThreadStore
+from src.observability.tracing import setup_tracing
 from src.graph.nodes.audit_log import make_audit_log_node
 from src.graph.nodes.confidence_recheck import make_confidence_recheck_node
 from src.graph.nodes.draft_answer import make_draft_answer_node
@@ -23,18 +22,21 @@ from src.persistence.db import ReviewStore
 from src.rag.retriever import build_retriever
 
 
+# Assembles the default GraphDeps bundle: LLM client, retriever, audit
+# logger, memory/thread stores, and the reviewer DB. Also enables Arize
+# LLM tracing (once per process) when ARIZE_API_KEY/ARIZE_SPACE_ID are set.
 def build_default_deps(
     auto_approve: bool = False,
     interactive: bool = True,
     settings: Settings | None = None,
 ) -> GraphDeps:
     settings = settings or get_settings()
-    arize_enabled = bool(os.getenv("ARIZE_API_KEY"))
+    setup_tracing(settings)
     return GraphDeps(
         settings=settings,
         llm=build_llm(settings),
         retriever=build_retriever(settings),
-        audit_logger=AuditLogger(settings.audit_log_path, arize_enabled=arize_enabled),
+        audit_logger=AuditLogger(settings.audit_log_path),
         conversation_memory=ConversationMemory(max_conversations=100),
         thread_store=CustomerThreadStore(settings.thread_store_path),
         auto_approve=auto_approve,
@@ -43,6 +45,8 @@ def build_default_deps(
     )
 
 
+# Conditional-edge selector after the route node: reads route_decision to
+# send AUTO_RESOLVE through confidence_recheck and everything else to hitl_gate.
 def _route_branch(state: GraphState) -> str:
     """AUTO_RESOLVE gets a second, stricter LLM-as-judge pass before it's
     finalized; the other three routes are already "safe" outcomes (escalate/
@@ -50,6 +54,8 @@ def _route_branch(state: GraphState) -> str:
     return state["route_decision"]
 
 
+# Conditional-edge selector after confidence_recheck: proceeds to hitl_gate
+# once passed or force-escalated, otherwise loops back to rag_retrieve to retry.
 def _confidence_recheck_branch(state: GraphState) -> str:
     if state["route_decision"] != "AUTO_RESOLVE":
         # confidence_recheck itself forced an override to ESCALATE because
@@ -60,6 +66,8 @@ def _confidence_recheck_branch(state: GraphState) -> str:
     return "retry"
 
 
+# Wires all pipeline nodes and conditional edges into a compiled LangGraph
+# StateGraph, implementing the full ingest -> ... -> audit_log flow.
 def build_graph(deps: GraphDeps):
     """Phase 2: adds the confidence-recheck refinement loop (§3 Phase 2).
     route_decision -> confidence_recheck only for AUTO_RESOLVE; a failing

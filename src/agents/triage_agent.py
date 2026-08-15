@@ -14,6 +14,7 @@ class TriageAgent:
     combining sentiment analysis, policy enforcement, retrieval-augmented generation,
     and confidence scoring to route tickets (AUTO_RESOLVE, ESCALATE, REFUSE, ASK_INFO)."""
 
+    # Stores settings and the RAG/policy sub-agents this orchestrator delegates to.
     def __init__(
         self,
         settings: Settings,
@@ -24,6 +25,8 @@ class TriageAgent:
         self.rag_agent = rag_agent
         self.policy_agent = policy_agent
 
+    # Walks the same 10-rule precedence chain as the graph's route_decision
+    # node (abuse -> refund rules -> escalation -> groundedness -> fields).
     def make_routing_decision(
         self,
         ticket: Ticket,
@@ -82,6 +85,8 @@ class TriageAgent:
         return "AUTO_RESOLVE", "policy_grounded_response"
 
 
+# Factory that wires settings plus the RAG and policy agents into a TriageAgent.
+# Used wherever the standalone (non-graph) triage orchestrator is needed.
 def build_triage_agent(
     settings: Settings,
     rag_agent: RAGAgent,

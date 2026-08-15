@@ -12,10 +12,13 @@ class AuditLogger:
     design -- the audit log must support compliance review of every AI
     decision."""
 
+    # Stores the target JSONL path and ensures its parent directory exists.
     def __init__(self, path: Path) -> None:
         self._path = path
         self._path.parent.mkdir(parents=True, exist_ok=True)
 
+    # Appends one timestamped audit entry (ticket, node, output, actor) as a
+    # JSON line. No corresponding update/delete -- entries are immutable.
     def log(self, ticket_id: str, node: str, output: dict, actor: str = "system") -> None:
         entry: AuditLogEntry = {
             "ticket_id": ticket_id,

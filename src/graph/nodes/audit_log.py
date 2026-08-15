@@ -4,10 +4,13 @@ from src.graph.deps import GraphDeps
 from src.graph.state import GraphState
 
 
+# Factory closing over deps; returns the final audit-rollup node function.
 def make_audit_log_node(deps: GraphDeps):
     """Final rollup entry summarizing the terminal decision, in addition to
     the per-node entries each earlier node already logs."""
 
+    # Writes one summary audit entry (route, sources, score, reviewer action)
+    # for the whole run. Last node before the graph reaches END.
     def audit_log(state: GraphState) -> dict:
         ticket = state["ticket"]
         output = {

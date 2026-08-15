@@ -14,6 +14,8 @@ class Retriever:
     process start -- cheap at ~5 files / ~30 chunks, avoids stale-index bugs.
     """
 
+    # Embeds all KB chunks with the sentence-transformers model and loads
+    # them into a flat inner-product FAISS index for cosine-similarity search.
     def __init__(self, chunks: list[dict], model_name: str) -> None:
         self._chunks = chunks
         self._model = SentenceTransformer(model_name)
@@ -24,6 +26,8 @@ class Retriever:
         if len(chunks):
             self._index.add(embeddings)
 
+    # Embeds the query and searches the FAISS index for the top-k most
+    # similar chunks, returning them with their source and similarity score.
     def retrieve(self, query: str, k: int = 3) -> list[RetrievedChunk]:
         if not self._chunks:
             return []
@@ -39,6 +43,8 @@ class Retriever:
         return results
 
 
+# Factory that loads the KB chunks and wraps them in a freshly-built Retriever.
+# Called once per process at graph-construction time.
 def build_retriever(settings: Settings) -> Retriever:
     chunks = load_kb_chunks(settings)
     return Retriever(chunks, settings.embeddings_model)

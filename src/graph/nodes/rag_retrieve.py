@@ -4,7 +4,10 @@ from src.graph.deps import GraphDeps
 from src.graph.state import GraphState
 
 
+# Factory closing over deps; returns the KB retrieval node function.
 def make_rag_retrieve_node(deps: GraphDeps):
+    # Runs similarity search against the knowledge base, widening the query
+    # with a reformulation hint and larger k on confidence_recheck retries.
     def rag_retrieve(state: GraphState) -> dict:
         ticket = state["ticket"]
         base_query = f"{ticket.subject} {ticket.message}"

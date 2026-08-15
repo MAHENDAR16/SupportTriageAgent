@@ -12,16 +12,21 @@ from src.models.ticket import Ticket
 CITATION_PATTERN = re.compile(r"\[source:\s*([\w\-. ]+?)\]", re.IGNORECASE)
 
 
+# Scans a draft reply for "[source: ...]" style citations using CITATION_PATTERN.
+# Returns the list of cited source filenames as they appear in the text.
 def extract_cited_sources(draft_reply: str) -> list[str]:
     return [match.strip() for match in CITATION_PATTERN.findall(draft_reply)]
 
 
+# Coarse groundedness proxy based on retrieval similarity alone (no LLM call).
+# Returns the highest similarity score among retrieved chunks, or 0.0 if none.
 def compute_groundedness(retrieved_chunks: list[RetrievedChunk]) -> float:
     if not retrieved_chunks:
         return 0.0
     return max(chunk["score"] for chunk in retrieved_chunks)
 
 
+# Compares cited sources in the draft against the sources actually retrieved.
 def find_fabricated_citations(draft_reply: str, retrieved_chunks: list[RetrievedChunk]) -> list[str]:
     """Citations in the draft that don't correspond to an actually retrieved
     source -- forces ESCALATE regardless of the similarity score."""
@@ -34,6 +39,8 @@ class GroundednessJudgment(BaseModel):
     score: float
     unsupported_claims: list[str] = Field(default_factory=list)
 
+    # Tolerates the LLM judge returning score as a string instead of a float.
+    # Falls back to 0.0 if the string can't be parsed as a number.
     @field_validator("score", mode="before")
     @classmethod
     def _coerce_score(cls, value):
@@ -81,12 +88,16 @@ _JUDGE_PROMPT = ChatPromptTemplate.from_messages(
 )
 
 
+# Formats retrieved chunks into a "[source: x]\ntext" block for prompt context.
+# Returns a placeholder string when no chunks were retrieved.
 def _format_context(chunks: list[RetrievedChunk]) -> str:
     if not chunks:
         return "(no relevant knowledge base content retrieved)"
     return "\n\n".join(f"[source: {c['source']}]\n{c['text']}" for c in chunks)
 
 
+# Generates the customer-facing draft reply via the LLM, grounded in the
+# retrieved KB context and constrained to cite sources for policy claims.
 def draft_answer(ticket: Ticket, retrieved_chunks: list[RetrievedChunk], llm) -> str:
     chain = _DRAFT_PROMPT | llm
     response = chain.invoke(
@@ -99,6 +110,8 @@ def draft_answer(ticket: Ticket, retrieved_chunks: list[RetrievedChunk], llm) ->
     return response.content
 
 
+# Runs a stricter LLM-as-judge pass that scores how well the draft's claims
+# are actually supported by the retrieved context, flagging unsupported ones.
 def judge_groundedness(draft_reply: str, retrieved_chunks: list[RetrievedChunk], llm) -> GroundednessJudgment:
     json_llm = llm.bind(response_format={"type": "json_object"})
     chain = _JUDGE_PROMPT | json_llm

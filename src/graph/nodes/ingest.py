@@ -4,7 +4,10 @@ from src.graph.deps import GraphDeps
 from src.graph.state import GraphState
 
 
+# Factory closing over deps; returns the ingest node function for the graph.
 def make_ingest_node(deps: GraphDeps):
+    # Loads the ticket's conversation history into memory/thread store and
+    # logs the ingest event. First node in the pipeline (graph entry point).
     def ingest(state: GraphState) -> dict:
         ticket = state["ticket"]
 
