@@ -59,7 +59,7 @@
   ],
   "llm_groundedness_passed": false,
   "query_reformulation_hint": "",
-  "reviewer_action": null,
+  "reviewer_action": "APPROVED",
   "reviewer_comments": null,
-  "review_id": 1
+  "review_id": 59
 }

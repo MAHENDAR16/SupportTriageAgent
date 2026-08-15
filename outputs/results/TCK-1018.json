@@ -43,7 +43,7 @@
   "route_reason": "low_groundedness",
   "groundedness_score": 0.25926369428634644,
   "retrieval_attempts": 1,
-  "reviewer_action": null,
-  "reviewer_comments": null,
+  "reviewer_action": "APPROVED",
+  "reviewer_comments": "",
   "review_id": 18
 }

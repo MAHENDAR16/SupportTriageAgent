@@ -48,7 +48,7 @@
   "route_reason": "repeat_refund_request_within_window",
   "groundedness_score": 0.6044397354125977,
   "retrieval_attempts": 1,
-  "reviewer_action": null,
+  "reviewer_action": "APPROVED",
   "reviewer_comments": null,
-  "review_id": 2
+  "review_id": 60
 }
