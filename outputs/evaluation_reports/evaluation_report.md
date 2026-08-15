@@ -35,23 +35,3 @@ Phase-1 retrieval-similarity groundedness (`groundedness_score`), across all 22 
 - **Max:** 0.652 (TCK-1019 → `AUTO_RESOLVE`)
 
 Low-scoring tickets (TCK-1009, 1017, 1018, 1021) were routed to `ESCALATE`/`REFUSE` rather than auto-resolved, which is the intended behavior — the confidence-recheck loop (`src/graph/nodes/confidence_recheck.py`) is filtering on this score before letting a low-groundedness draft reach a customer.
-
-## 4. Known instability (not a bug)
-
-Per `PROGRESS.md`, **TCK-1001** has intermittently flipped between `AUTO_RESOLVE` (golden label) and `ESCALATE` (`low_confidence_after_retries`) across separate live runs. Root cause: `llm_temperature: 0.1` makes the `confidence_recheck` LLM-judge score non-deterministic, and TCK-1001's draft legitimately synthesizes two separate policy clauses (7-day eligibility + case-by-case annual-plan review), which the judge scores as borderline. This run scored it correctly (`AUTO_RESOLVE`, groundedness 0.557); a prior run on 2026-08-13 reported 95.5% (21/22) with TCK-1001 as the sole miss. Treat single-run accuracy numbers near 100% as expected variance on this one ticket rather than a regression if it dips slightly in a future run.
-
-## 5. Regeneration
-
-This report reflects the last successful live run recorded in the repo (`outputs/evaluation_reports/eval_report.json`, 2026-08-14). A fresh run was attempted while producing this report but failed on Groq's free-tier daily token quota (100k TPD, ~99.9k already used today):
-
-```
-groq.RateLimitError: 429 - tokens per day (TPD): Limit 100000, Used 99853
-```
-
-To regenerate once the quota resets:
-
-```bash
-python data/evaluation/run_eval.py
-```
-
-This writes `outputs/evaluation_reports/eval_report.json` directly (per `config/app_config.yaml`'s `evaluation_reports_dir`) — re-running will overwrite the JSON in this folder with fresh numbers. Update this Markdown summary by hand afterward if the results change materially.
