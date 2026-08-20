@@ -1,0 +1,63 @@
+{
+  "ticket": {
+    "ticket_id": "TCK-1022",
+    "customer_id": "CUST-022",
+    "subject": "App not loading on Safari",
+    "message": "The app is not loading for me on Safari on my Mac -- I just get a blank white screen. This started this morning after the update.",
+    "conversation_history": [],
+    "priority": "medium",
+    "category": "troubleshooting",
+    "order_id": null,
+    "account_id": null,
+    "subscription_id": null,
+    "days_since_purchase": null,
+    "previous_refund_request_count": 0,
+    "days_since_last_refund_request": null
+  },
+  "sentiment": "neutral",
+  "detected_category": "troubleshooting",
+  "requires_more_info": false,
+  "missing_fields": [],
+  "abuse_detected": false,
+  "conversation_context": "(no conversation history)",
+  "retrieved_chunks": [
+    {
+      "source": "troubleshooting_faq.md",
+      "text": "# Troubleshooting FAQ\n\n## Common Technical Issues\n- If the app is not loading, ask the user to refresh the browser and check the internet connection.\n- If the customer cannot log in, verify the username and password and use the password reset function.\n- If the customer reports a billing mismatch, confirm the subscription plan and billing date before answering.",
+      "score": 0.4548455476760864
+    },
+    {
+      "source": "troubleshooting_faq.md",
+      "text": "## When to Ask for More Information\nAsk for more information when the ticket does not include enough detail to diagnose the issue, such as:\n- the device or browser being used,\n- the date the issue started,\n- the exact error message,\n- or the account identifier.\n\n## Escalation Guidance\nEscalate when the issue is outside standard troubleshooting steps or requires account-specific investigation.",
+      "score": 0.2579278349876404
+    },
+    {
+      "source": "account_access_faq.md",
+      "text": "## Required Information\nBefore troubleshooting account access, request one of the following if not already provided:\n- the registered email address,\n- the account ID,\n- or the most recent order ID.\n\n## Escalation Guidance\nEscalate to support if:\n- the customer cannot verify their account ownership,\n- the account is suspected to be compromised,\n- or the requested information is missing after one follow-up request.",
+      "score": 0.1532670557498932
+    },
+    {
+      "source": "account_access_faq.md",
+      "text": "# Account Access FAQ\n\n## Common Issues\n- Password reset: Customers can use the password reset link on the login page.\n- Login problems: If the customer cannot access the account, confirm the email address used for registration.\n- Account lockout: If the account is locked after repeated failed attempts, the user should wait 15 minutes before trying again.",
+      "score": 0.09443358331918716
+    },
+    {
+      "source": "abusive_content_policy.md",
+      "text": "# Abusive Content Policy\n\n## Allowed Handling\nThe support system must not generate a personalized response to abusive, threatening, or harassing messages.\n\n## Required Response\nFor abusive or threatening content, the system should use a scripted refusal such as:\n\n> I\u2019m sorry, but I can\u2019t assist with abusive or threatening requests. Please contact support through the appropriate channel if you need help with a legitimate issue.",
+      "score": 0.058846279978752136
+    }
+  ],
+  "draft_reply": "Draft Reply:\n\nDear Customer,\n\nThank you for reaching out to us about the issue with the app not loading on Safari. According to our troubleshooting guidelines [source: troubleshooting_faq.md], if the app is not loading, we recommend refreshing the browser and checking the internet connection. Could you please try this and see if it resolves the issue?\n\nAdditionally, to better assist you, could you please provide more information about the issue, such as the exact error message you're seeing (if any) and the date the issue started [source: troubleshooting_faq.md]? This will help us diagnose the problem more effectively.\n\nIf the issue persists after trying the above steps, we may need to escalate this to our support team for further investigation [source: troubleshooting_faq.md]. \n\nPlease let us know if there's any further information we can assist you with.\n\nBest regards,\nSupport Team",
+  "fabricated_citations": [],
+  "route_decision": "AUTO_RESOLVE",
+  "route_reason": "policy_grounded_response",
+  "groundedness_score": 0.4548455476760864,
+  "retrieval_attempts": 2,
+  "llm_groundedness_score": 1.0,
+  "unsupported_claims": [],
+  "llm_groundedness_passed": true,
+  "query_reformulation_hint": "",
+  "reviewer_action": "APPROVED",
+  "reviewer_comments": "",
+  "review_id": 22
+}

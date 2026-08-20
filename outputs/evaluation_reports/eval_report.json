@@ -1,0 +1,239 @@
+{
+  "summary": {
+    "total_tickets": 22,
+    "correct_routes": 22,
+    "route_accuracy": 1.0,
+    "route_accuracy_target": 0.9,
+    "route_accuracy_pass": true,
+    "auto_resolve_count": 6,
+    "citation_presence_rate": 1.0,
+    "citation_presence_target": 1.0,
+    "citation_presence_pass": true,
+    "fabricated_citation_rate": 0.0,
+    "fabricated_citation_target": 0.0,
+    "fabricated_citation_pass": true,
+    "overall_pass": true
+  },
+  "tickets": [
+    {
+      "ticket_id": "TCK-1001",
+      "expected_route": "AUTO_RESOLVE",
+      "actual_route": "AUTO_RESOLVE",
+      "route_correct": true,
+      "route_reason": "policy_grounded_response",
+      "groundedness_score": 0.5567744970321655,
+      "has_citation": true,
+      "fabricated_citations": []
+    },
+    {
+      "ticket_id": "TCK-1002",
+      "expected_route": "ESCALATE",
+      "actual_route": "ESCALATE",
+      "route_correct": true,
+      "route_reason": "repeat_refund_request_within_window",
+      "groundedness_score": 0.6044397354125977,
+      "has_citation": true,
+      "fabricated_citations": []
+    },
+    {
+      "ticket_id": "TCK-1003",
+      "expected_route": "ESCALATE",
+      "actual_route": "ESCALATE",
+      "route_correct": true,
+      "route_reason": "refund_outside_window",
+      "groundedness_score": 0.5843569040298462,
+      "has_citation": true,
+      "fabricated_citations": []
+    },
+    {
+      "ticket_id": "TCK-1004",
+      "expected_route": "AUTO_RESOLVE",
+      "actual_route": "AUTO_RESOLVE",
+      "route_correct": true,
+      "route_reason": "policy_grounded_response",
+      "groundedness_score": 0.6067150831222534,
+      "has_citation": true,
+      "fabricated_citations": []
+    },
+    {
+      "ticket_id": "TCK-1005",
+      "expected_route": "ASK_INFO",
+      "actual_route": "ASK_INFO",
+      "route_correct": true,
+      "route_reason": "missing_required_fields",
+      "groundedness_score": 0.4732602536678314,
+      "has_citation": true,
+      "fabricated_citations": []
+    },
+    {
+      "ticket_id": "TCK-1006",
+      "expected_route": "ASK_INFO",
+      "actual_route": "ASK_INFO",
+      "route_correct": true,
+      "route_reason": "missing_required_fields",
+      "groundedness_score": 0.5989960432052612,
+      "has_citation": true,
+      "fabricated_citations": []
+    },
+    {
+      "ticket_id": "TCK-1007",
+      "expected_route": "ASK_INFO",
+      "actual_route": "ASK_INFO",
+      "route_correct": true,
+      "route_reason": "classifier_requires_more_info",
+      "groundedness_score": 0.3118172585964203,
+      "has_citation": true,
+      "fabricated_citations": []
+    },
+    {
+      "ticket_id": "TCK-1008",
+      "expected_route": "ESCALATE",
+      "actual_route": "ESCALATE",
+      "route_correct": true,
+      "route_reason": "refund_outside_window",
+      "groundedness_score": 0.4721445143222809,
+      "has_citation": true,
+      "fabricated_citations": []
+    },
+    {
+      "ticket_id": "TCK-1009",
+      "expected_route": "REFUSE",
+      "actual_route": "REFUSE",
+      "route_correct": true,
+      "route_reason": "abusive_content_detected",
+      "groundedness_score": 0.21553827822208405,
+      "has_citation": false,
+      "fabricated_citations": []
+    },
+    {
+      "ticket_id": "TCK-1010",
+      "expected_route": "REFUSE",
+      "actual_route": "REFUSE",
+      "route_correct": true,
+      "route_reason": "refund_abuse_language_detected",
+      "groundedness_score": 0.6329447627067566,
+      "has_citation": false,
+      "fabricated_citations": []
+    },
+    {
+      "ticket_id": "TCK-1011",
+      "expected_route": "AUTO_RESOLVE",
+      "actual_route": "AUTO_RESOLVE",
+      "route_correct": true,
+      "route_reason": "policy_grounded_response",
+      "groundedness_score": 0.6479724645614624,
+      "has_citation": true,
+      "fabricated_citations": []
+    },
+    {
+      "ticket_id": "TCK-1012",
+      "expected_route": "ASK_INFO",
+      "actual_route": "ASK_INFO",
+      "route_correct": true,
+      "route_reason": "missing_required_fields",
+      "groundedness_score": 0.4916028678417206,
+      "has_citation": true,
+      "fabricated_citations": []
+    },
+    {
+      "ticket_id": "TCK-1013",
+      "expected_route": "ASK_INFO",
+      "actual_route": "ASK_INFO",
+      "route_correct": true,
+      "route_reason": "classifier_requires_more_info",
+      "groundedness_score": 0.35113972425460815,
+      "has_citation": true,
+      "fabricated_citations": []
+    },
+    {
+      "ticket_id": "TCK-1014",
+      "expected_route": "ASK_INFO",
+      "actual_route": "ASK_INFO",
+      "route_correct": true,
+      "route_reason": "missing_required_fields",
+      "groundedness_score": 0.38967064023017883,
+      "has_citation": true,
+      "fabricated_citations": []
+    },
+    {
+      "ticket_id": "TCK-1015",
+      "expected_route": "ESCALATE",
+      "actual_route": "ESCALATE",
+      "route_correct": true,
+      "route_reason": "refund_outside_window",
+      "groundedness_score": 0.6443459987640381,
+      "has_citation": true,
+      "fabricated_citations": []
+    },
+    {
+      "ticket_id": "TCK-1016",
+      "expected_route": "AUTO_RESOLVE",
+      "actual_route": "AUTO_RESOLVE",
+      "route_correct": true,
+      "route_reason": "policy_grounded_response",
+      "groundedness_score": 0.47582459449768066,
+      "has_citation": true,
+      "fabricated_citations": []
+    },
+    {
+      "ticket_id": "TCK-1017",
+      "expected_route": "ESCALATE",
+      "actual_route": "ESCALATE",
+      "route_correct": true,
+      "route_reason": "low_groundedness",
+      "groundedness_score": 0.1724904179573059,
+      "has_citation": true,
+      "fabricated_citations": []
+    },
+    {
+      "ticket_id": "TCK-1018",
+      "expected_route": "ESCALATE",
+      "actual_route": "ESCALATE",
+      "route_correct": true,
+      "route_reason": "low_groundedness",
+      "groundedness_score": 0.25926369428634644,
+      "has_citation": true,
+      "fabricated_citations": []
+    },
+    {
+      "ticket_id": "TCK-1019",
+      "expected_route": "AUTO_RESOLVE",
+      "actual_route": "AUTO_RESOLVE",
+      "route_correct": true,
+      "route_reason": "policy_grounded_response",
+      "groundedness_score": 0.6524142622947693,
+      "has_citation": true,
+      "fabricated_citations": []
+    },
+    {
+      "ticket_id": "TCK-1020",
+      "expected_route": "ESCALATE",
+      "actual_route": "ESCALATE",
+      "route_correct": true,
+      "route_reason": "policy_mandated_escalation_keywords",
+      "groundedness_score": 0.5078258514404297,
+      "has_citation": true,
+      "fabricated_citations": []
+    },
+    {
+      "ticket_id": "TCK-1021",
+      "expected_route": "REFUSE",
+      "actual_route": "REFUSE",
+      "route_correct": true,
+      "route_reason": "abusive_content_detected",
+      "groundedness_score": 0.3002486228942871,
+      "has_citation": false,
+      "fabricated_citations": []
+    },
+    {
+      "ticket_id": "TCK-1022",
+      "expected_route": "AUTO_RESOLVE",
+      "actual_route": "AUTO_RESOLVE",
+      "route_correct": true,
+      "route_reason": "policy_grounded_response",
+      "groundedness_score": 0.37459269165992737,
+      "has_citation": true,
+      "fabricated_citations": []
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "ticket": {
+    "ticket_id": "TCK-1019",
+    "customer_id": "CUST-019",
+    "subject": "Account locked after failed logins",
+    "message": "My account (ACC-3391) got locked after a few failed login attempts. How long until I can try again?",
+    "conversation_history": [],
+    "priority": "medium",
+    "category": "login_access",
+    "order_id": null,
+    "account_id": "ACC-3391",
+    "subscription_id": null,
+    "days_since_purchase": null,
+    "previous_refund_request_count": 0,
+    "days_since_last_refund_request": null
+  },
+  "sentiment": "neutral",
+  "detected_category": "login_access",
+  "requires_more_info": false,
+  "missing_fields": [],
+  "abuse_detected": false,
+  "conversation_context": "(no conversation history)",
+  "retrieved_chunks": [
+    {
+      "source": "account_access_faq.md",
+      "text": "# Account Access FAQ\n\n## Common Issues\n- Password reset: Customers can use the password reset link on the login page.\n- Login problems: If the customer cannot access the account, confirm the email address used for registration.\n- Account lockout: If the account is locked after repeated failed attempts, the user should wait 15 minutes before trying again.",
+      "score": 0.6524142622947693
+    },
+    {
+      "source": "account_access_faq.md",
+      "text": "## Required Information\nBefore troubleshooting account access, request one of the following if not already provided:\n- the registered email address,\n- the account ID,\n- or the most recent order ID.\n\n## Escalation Guidance\nEscalate to support if:\n- the customer cannot verify their account ownership,\n- the account is suspected to be compromised,\n- or the requested information is missing after one follow-up request.",
+      "score": 0.44772040843963623
+    },
+    {
+      "source": "troubleshooting_faq.md",
+      "text": "## When to Ask for More Information\nAsk for more information when the ticket does not include enough detail to diagnose the issue, such as:\n- the device or browser being used,\n- the date the issue started,\n- the exact error message,\n- or the account identifier.\n\n## Escalation Guidance\nEscalate when the issue is outside standard troubleshooting steps or requires account-specific investigation.",
+      "score": 0.33548206090927124
+    }
+  ],
+  "draft_reply": "Draft Reply:\n\nDear Customer,\n\nThank you for reaching out to us about your account issue. According to our account access FAQ [source: account_access_faq.md], if your account is locked after repeated failed login attempts, you should wait 15 minutes before trying to log in again.\n\nPlease try logging in again after the specified time. If you continue to experience issues, we may need to request additional information to assist you further, such as confirming your registered email address or the most recent order ID [source: account_access_faq.md].\n\nIf the problem persists, we may need to escalate the issue for further investigation [source: account_access_faq.md] and [source: troubleshooting_faq.md].\n\nBest regards,\nSupport Team",
+  "fabricated_citations": [],
+  "route_decision": "AUTO_RESOLVE",
+  "route_reason": "policy_grounded_response",
+  "groundedness_score": 0.6524142622947693,
+  "retrieval_attempts": 1,
+  "llm_groundedness_score": 1.0,
+  "unsupported_claims": [],
+  "llm_groundedness_passed": true,
+  "query_reformulation_hint": "",
+  "reviewer_action": "APPROVED",
+  "reviewer_comments": "",
+  "review_id": 19
+}

@@ -1,0 +1,46 @@
+# Core LLM orchestration
+langgraph>=0.2.60,<0.3
+langchain>=0.3.7,<0.4
+langchain-groq>=0.2.1,<0.3
+langchain-community>=0.3.7,<0.4
+
+# RAG / vector store / embeddings
+faiss-cpu>=1.8.0,<2.0
+sentence-transformers>=3.2.0,<4.0
+numpy>=1.26,<2.0
+
+# Config & data models
+pydantic>=2.9,<3.0
+pydantic-settings>=2.5,<3.0
+pyyaml>=6.0,<7.0
+python-dotenv>=1.0
+
+# API layer (dependency only for now; not wired -- Phase 2's reviewer UI
+# calls the graph/persistence modules directly, see build_graph.py docstring)
+fastapi>=0.115,<1.0
+uvicorn[standard]>=0.30,<1.0
+
+# Reviewer UI
+streamlit>=1.38,<2.0
+
+# Testing
+pytest>=8.3,<9.0
+
+# Observability & logging
+# Optional: sends LangChain/LangGraph LLM traces to Arize via OpenTelemetry.
+# Enable by setting ARIZE_API_KEY and ARIZE_SPACE_ID.
+arize-otel>=0.13,<1.0
+openinference-instrumentation-langchain>=0.1.70,<0.2
+
+# Provider SDKs used by scripts/ and as fallback clients
+requests>=2.28
+openai>=1.0
+groq>=0.11,<1.0
+
+# Optional: only needed to re-execute the notebooks in sample_run/ (they ship
+# pre-executed with results already baked in -- see sample_run/README.md).
+jupyter>=1.0
+nbconvert>=7.16
+ipykernel>=6.29
+pandas>=2.2
+matplotlib>=3.9

@@ -1,0 +1,52 @@
+{
+  "ticket": {
+    "ticket_id": "TCK-1013",
+    "customer_id": "CUST-013",
+    "subject": "Something isn't working",
+    "message": "It's broken again and I don't know why. Please help.",
+    "conversation_history": [],
+    "priority": "low",
+    "category": "troubleshooting",
+    "order_id": null,
+    "account_id": null,
+    "subscription_id": null,
+    "days_since_purchase": null,
+    "previous_refund_request_count": 0,
+    "days_since_last_refund_request": null
+  },
+  "sentiment": "negative",
+  "detected_category": "troubleshooting",
+  "requires_more_info": true,
+  "missing_fields": [
+    "error description",
+    "symptoms"
+  ],
+  "abuse_detected": false,
+  "conversation_context": "(no conversation history)",
+  "retrieved_chunks": [
+    {
+      "source": "troubleshooting_faq.md",
+      "text": "# Troubleshooting FAQ\n\n## Common Technical Issues\n- If the app is not loading, ask the user to refresh the browser and check the internet connection.\n- If the customer cannot log in, verify the username and password and use the password reset function.\n- If the customer reports a billing mismatch, confirm the subscription plan and billing date before answering.",
+      "score": 0.35113972425460815
+    },
+    {
+      "source": "troubleshooting_faq.md",
+      "text": "## When to Ask for More Information\nAsk for more information when the ticket does not include enough detail to diagnose the issue, such as:\n- the device or browser being used,\n- the date the issue started,\n- the exact error message,\n- or the account identifier.\n\n## Escalation Guidance\nEscalate when the issue is outside standard troubleshooting steps or requires account-specific investigation.",
+      "score": 0.25834110379219055
+    },
+    {
+      "source": "account_access_faq.md",
+      "text": "# Account Access FAQ\n\n## Common Issues\n- Password reset: Customers can use the password reset link on the login page.\n- Login problems: If the customer cannot access the account, confirm the email address used for registration.\n- Account lockout: If the account is locked after repeated failed attempts, the user should wait 15 minutes before trying again.",
+      "score": 0.208714559674263
+    }
+  ],
+  "draft_reply": "Draft Reply:\n\nDear Customer,\n\nThank you for reaching out to us about the issue you're experiencing. To better assist you, we need more information to diagnose the problem. According to our troubleshooting guidelines [source: troubleshooting_faq.md], it would be helpful to know the device or browser you're using, the date the issue started, the exact error message you're seeing, or your account identifier.\n\nCould you please provide us with more details about the issue you're encountering? This will help us to provide a more accurate and efficient solution.\n\nIf we're unable to resolve the issue through standard troubleshooting steps, we may need to escalate the matter for further investigation [source: troubleshooting_faq.md].\n\nLooking forward to hearing back from you with more information.\n\nBest regards,\n[Your Name]",
+  "fabricated_citations": [],
+  "route_decision": "ASK_INFO",
+  "route_reason": "classifier_requires_more_info",
+  "groundedness_score": 0.35113972425460815,
+  "retrieval_attempts": 1,
+  "reviewer_action": "APPROVED",
+  "reviewer_comments": "",
+  "review_id": 13
+}

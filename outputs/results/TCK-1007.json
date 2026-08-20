@@ -1,0 +1,52 @@
+{
+  "ticket": {
+    "ticket_id": "TCK-1007",
+    "customer_id": "CUST-007",
+    "subject": "App keeps crashing",
+    "message": "The app crashes every time I open the dashboard after the latest update.",
+    "conversation_history": [],
+    "priority": "medium",
+    "category": "troubleshooting",
+    "order_id": null,
+    "account_id": null,
+    "subscription_id": null,
+    "days_since_purchase": null,
+    "previous_refund_request_count": 0,
+    "days_since_last_refund_request": null
+  },
+  "sentiment": "negative",
+  "detected_category": "troubleshooting",
+  "requires_more_info": true,
+  "missing_fields": [
+    "account identifier",
+    "error message"
+  ],
+  "abuse_detected": false,
+  "conversation_context": "(no conversation history)",
+  "retrieved_chunks": [
+    {
+      "source": "troubleshooting_faq.md",
+      "text": "# Troubleshooting FAQ\n\n## Common Technical Issues\n- If the app is not loading, ask the user to refresh the browser and check the internet connection.\n- If the customer cannot log in, verify the username and password and use the password reset function.\n- If the customer reports a billing mismatch, confirm the subscription plan and billing date before answering.",
+      "score": 0.3118172585964203
+    },
+    {
+      "source": "troubleshooting_faq.md",
+      "text": "## When to Ask for More Information\nAsk for more information when the ticket does not include enough detail to diagnose the issue, such as:\n- the device or browser being used,\n- the date the issue started,\n- the exact error message,\n- or the account identifier.\n\n## Escalation Guidance\nEscalate when the issue is outside standard troubleshooting steps or requires account-specific investigation.",
+      "score": 0.24340546131134033
+    },
+    {
+      "source": "account_access_faq.md",
+      "text": "# Account Access FAQ\n\n## Common Issues\n- Password reset: Customers can use the password reset link on the login page.\n- Login problems: If the customer cannot access the account, confirm the email address used for registration.\n- Account lockout: If the account is locked after repeated failed attempts, the user should wait 15 minutes before trying again.",
+      "score": 0.083567775785923
+    }
+  ],
+  "draft_reply": "Draft Reply:\n\nDear Customer,\n\nThank you for reaching out to us about the issue with the app crashing when you open the dashboard. To troubleshoot this issue, we can start by checking if the problem is related to your browser or internet connection. According to our troubleshooting FAQ [source: troubleshooting_faq.md], if the app is not loading, we should first ask you to refresh the browser and check the internet connection.\n\nHowever, since you've mentioned that the app crashes after opening the dashboard, which is a more specific issue, we may need more information to diagnose the problem. As per our guidelines [source: troubleshooting_faq.md], we typically ask for more details such as the device or browser being used, the date the issue started, the exact error message, or the account identifier to better understand the issue.\n\nGiven that the issue is related to a technical problem that may require more in-depth investigation, especially considering it started after the latest update, we may need to escalate this issue for further assistance [source: troubleshooting_faq.md]. \n\nWe recommend escalating this issue to our technical support team for a more detailed investigation.\n\nBest regards,\n[Your Name]",
+  "fabricated_citations": [],
+  "route_decision": "ASK_INFO",
+  "route_reason": "classifier_requires_more_info",
+  "groundedness_score": 0.3118172585964203,
+  "retrieval_attempts": 1,
+  "reviewer_action": "APPROVED",
+  "reviewer_comments": "follows as per the kb",
+  "review_id": 7
+}

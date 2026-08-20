@@ -1,6 +1,11 @@
+# Non-secret, environment-independent LLM tuning defaults.
+# Provider identity, live model override, API key, and base URL are NOT read
+# from this file -- they come from environment variables via
+# src/config/settings.py (Settings.groq_model / .groq_api_key / .groq_api_url),
+# so this file stays identical across dev/CI/prod.
 llm:
-  provider: openai-compatible
-  model: gpt-4o-mini
+  provider: groq
+  default_model: llama-3.3-70b-versatile   # used only if GROQ_MODEL env var is unset
   temperature: 0.1
   max_tokens: 400
   request_timeout_seconds: 30

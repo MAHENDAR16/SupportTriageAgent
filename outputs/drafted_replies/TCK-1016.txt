@@ -1,0 +1,10 @@
+Draft Reply:
+
+Dear Customer,
+
+You can switch your subscription plan at any time from the billing settings page [source: subscription_policy.md]. To change your plan from annual to monthly billing for subscription SUB-5567, please navigate to the billing settings page and make the necessary adjustments. Please note that plan changes take effect at the next billing cycle [source: subscription_policy.md].
+
+If you have any further questions or need assistance with this process, please let us know.
+
+Best regards,
+[Your Name]

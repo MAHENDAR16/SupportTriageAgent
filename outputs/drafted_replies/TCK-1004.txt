@@ -1,0 +1,10 @@
+Draft Reply:
+
+Dear Customer,
+
+Thank you for reaching out to cancel your subscription. According to our subscription policy [source: subscription_policy.md], cancellation requests are effective at the end of the current billing period unless otherwise stated by the account settings. We will process your cancellation request for subscription SUB-4410, and it will be effective at the end of your current billing period.
+
+Please note that as per our policy [source: subscription_policy.md], no refund is guaranteed for the current billing period. If you have any further questions or concerns, please don't hesitate to reach out.
+
+Best regards,
+[Your Name]

@@ -1,0 +1,14 @@
+Draft Reply:
+
+Dear Customer,
+
+Thank you for reaching out to us about the issue with signing in to your account. To assist you with accessing your profile, I would like to troubleshoot the common issues first. According to our account access FAQ [source: account_access_faq.md], if you're having login problems, please confirm the email address used for registration. Additionally, if you've had repeated failed attempts, please wait 15 minutes before trying again as the account may be locked out [source: account_access_faq.md].
+
+To better assist you, could you please provide one of the following if not already provided: the registered email address, the account ID, or the most recent order ID [source: account_access_faq.md]? This information will help us verify your account ownership and troubleshoot the issue further.
+
+If the issue persists after trying the above steps, we may need to escalate this to our support team for further assistance [source: account_access_faq.md]. 
+
+Please let me know if there's any additional information I can assist you with.
+
+Best regards,
+Support Team

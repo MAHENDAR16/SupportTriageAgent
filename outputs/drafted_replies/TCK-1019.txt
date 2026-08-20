@@ -1,0 +1,12 @@
+Draft Reply:
+
+Dear Customer,
+
+Thank you for reaching out to us about your account issue. According to our account access FAQ [source: account_access_faq.md], if your account is locked after repeated failed login attempts, you should wait 15 minutes before trying to log in again.
+
+Please try logging in again after the specified time. If you continue to experience issues, we may need to request additional information to assist you further, such as confirming your registered email address or the most recent order ID [source: account_access_faq.md].
+
+If the problem persists, we may need to escalate the issue for further investigation [source: account_access_faq.md] and [source: troubleshooting_faq.md].
+
+Best regards,
+Support Team

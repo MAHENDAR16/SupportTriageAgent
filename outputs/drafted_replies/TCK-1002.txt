@@ -1,0 +1,14 @@
+Draft Reply:
+
+Dear Customer,
+
+Thank you for reaching out to us regarding your refund request for order ORD-2091. According to our refund policy [source: refund_policy.md], if a customer submits multiple refund requests for the same order within 90 days, the case should be flagged as a repeat request and escalated to a specialist.
+
+Since you have already requested a refund last month and are now requesting it again, this case will be escalated to a specialist for further review [source: refund_policy.md]. We apologize for any inconvenience caused by the delay in your previous refund request.
+
+Please allow us to escalate this matter to ensure it is handled properly. We will review your case and get back to you as soon as possible.
+
+Thank you for your patience and understanding.
+
+Best regards,
+Support Team
